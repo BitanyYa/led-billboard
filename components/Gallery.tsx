@@ -35,20 +35,6 @@ const galleryImages = [
     aspect: "tall",
     src: "https://assets.mixkit.co/videos/preview/mixkit-driving-on-a-highway-at-night-with-city-lights-in-the-4171-large.mp4",
   },
-  {
-    id: 5,
-    title: "City Digital Signage",
-    description: "Multiple digital screens in a high-traffic commercial district",
-    aspect: "wide",
-    src: "https://assets.mixkit.co/videos/preview/mixkit-busy-highway-in-the-city-at-night-4165-large.mp4",
-  },
-  {
-    id: 6,
-    title: "Advertising Technology",
-    description: "Modern LED display technology for high-impact campaigns",
-    aspect: "tall",
-    src: "https://assets.mixkit.co/videos/preview/mixkit-time-lapse-of-a-busy-intersection-at-night-4168-large.mp4",
-  },
 ];
 
 export default function Gallery() {

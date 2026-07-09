@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
@@ -137,9 +137,21 @@ export default function Hero() {
                 <div className="p-4">
                   {/* Screen */}
                   <div className="relative rounded-xl overflow-hidden aspect-[10/7] bg-gradient-to-br from-[#0057D9] via-[#0047B3] to-[#001F5C]">
+                    {/* Background video */}
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-at-night-with-light-trails-of-traffic-4835-large.mp4"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Dark overlay for contrast */}
+                    <div className="absolute inset-0 bg-black/40" />
+
                     {/* LED grid overlay */}
                     <div
-                      className="absolute inset-0 opacity-10"
+                      className="absolute inset-0 opacity-20"
                       style={{
                         backgroundImage:
                           "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
@@ -148,21 +160,21 @@ export default function Hero() {
                     />
 
                     {/* Bright content on screen */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10">
                       <div className="flex justify-center mb-3">
                         <img
                           src="/logo.png"
                           alt="AWLO Advert"
-                          className="h-16 w-auto"
+                          className="h-16 w-auto drop-shadow-lg"
                         />
                       </div>
-                      <div className="text-white/80 text-sm leading-relaxed max-w-[200px]">
+                      <div className="text-white/90 font-medium text-sm leading-relaxed max-w-[200px] drop-shadow-md">
                         Your brand, displayed 40× daily to thousands of viewers
                       </div>
 
                       {/* Scan line effect */}
                       <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute inset-x-0 h-px bg-white/5 animate-scan" />
+                        <div className="absolute inset-x-0 h-[2px] bg-white/20 animate-scan" />
                       </div>
                     </div>
 

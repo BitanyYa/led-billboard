@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -121,14 +121,23 @@ export default function Billboard() {
               <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-gray-700">
                 {/* Screen border */}
                 <div className="m-3 bg-black rounded-xl overflow-hidden relative" style={{ aspectRatio: "10/7" }}>
-                  {/* LED display */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0057D9] via-[#0047B3] to-[#001F5C]">
+                  {/* LED display background video */}
+                  <div className="absolute inset-0">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      src="https://assets.mixkit.co/videos/preview/mixkit-busy-highway-in-the-city-at-night-4165-large.mp4"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/50" />
                     {/* Pixel grid */}
                     <div
-                      className="absolute inset-0 opacity-[0.07]"
+                      className="absolute inset-0 opacity-20"
                       style={{
                         backgroundImage:
-                          "radial-gradient(circle, white 1px, transparent 1px)",
+                          "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
                         backgroundSize: "6px 6px",
                       }}
                     />
