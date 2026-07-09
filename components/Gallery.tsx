@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Image as ImageIcon } from "lucide-react";
+import AwloAdvert from "@/components/AwloAdvert";
 
 // Highly relevant LED billboard / outdoor advertising videos
 const galleryImages = [
@@ -102,7 +102,7 @@ export default function Gallery() {
                     src={img.src}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  {/* LED grid overlay (subtle effect on photos) */}
+                  {/* LED grid overlay */}
                   <div
                     className="absolute inset-0 opacity-[0.03]"
                     style={{
@@ -111,6 +111,22 @@ export default function Gallery() {
                       backgroundSize: "6px 6px",
                     }}
                   />
+                  {/* AWLO Advert overlay on the first (hero) card */}
+                  {i === 0 && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center">
+                      {/* Simulated billboard frame on the video */}
+                      <div className="relative w-[65%] max-w-[320px]">
+                        <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.6)] border border-gray-700">
+                          <div className="m-2 bg-black rounded-lg overflow-hidden" style={{ aspectRatio: "10/7" }}>
+                            <AwloAdvert />
+                          </div>
+                          <div className="h-2 bg-gray-700 mx-2 mb-2 rounded-b" />
+                        </div>
+                        {/* Pole */}
+                        <div className="mx-auto w-3 h-6 bg-gray-600/70 rounded-b" />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
 

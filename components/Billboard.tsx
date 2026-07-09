@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Maximize2, Zap, Clock, BarChart2, Lightbulb, Building2 } from "lucide-react";
+import AwloAdvert from "@/components/AwloAdvert";
 
 const specs = [
   {
@@ -143,23 +144,8 @@ export default function Billboard() {
                     />
                   </div>
 
-                  {/* Screen content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                    <motion.div
-                      animate={{ scale: [1, 1.03, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <div className="font-heading font-extrabold text-4xl text-[#FFD400] mb-1 drop-shadow-[0_0_20px_rgba(255,212,0,0.9)]">
-                        YOUR BRAND
-                      </div>
-                      <div className="font-heading font-semibold text-2xl text-white mb-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                        HERE
-                      </div>
-                      <div className="text-white/80 text-sm font-medium tracking-wide">
-                        40 times Â· every single day
-                      </div>
-                    </motion.div>
-                  </div>
+                  {/* Screen content: AWLO Advert Slideshow */}
+                  <AwloAdvert />
 
                   {/* Scanline */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.05] to-transparent pointer-events-none" />
