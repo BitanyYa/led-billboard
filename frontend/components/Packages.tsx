@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check, Star } from "lucide-react";
+import Link from "next/link";
 
 const packages = [
   {
@@ -236,18 +237,19 @@ export default function Packages() {
                   </ul>
 
                   {/* CTA */}
-                  <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    href="#contact"
-                    className={`block text-center font-bold text-sm py-3.5 px-5 rounded-2xl transition-all duration-300 ${
-                      pkg.popular
-                        ? "bg-[#FFD400] text-gray-900 hover:bg-[#FFE033] shadow-md hover:shadow-lg"
-                        : "bg-[#0057D9] text-white hover:bg-[#003DA0] shadow-sm hover:shadow-md"
-                    }`}
-                  >
-                    {pkg.cta}
-                  </motion.a>
+                  <Link href="/request-quote">
+                    <motion.span
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={`block text-center font-bold text-sm py-3.5 px-5 rounded-2xl transition-all duration-300 cursor-pointer ${
+                        pkg.popular
+                          ? "bg-[#FFD400] text-gray-900 hover:bg-[#FFE033] shadow-md hover:shadow-lg"
+                          : "bg-[#0057D9] text-white hover:bg-[#003DA0] shadow-sm hover:shadow-md"
+                      }`}
+                    >
+                      {pkg.cta}
+                    </motion.span>
+                  </Link>
                 </div>
               </motion.div>
             </motion.div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -76,19 +77,16 @@ export default function Navbar() {
           </nav>
 
           {/* CTA Button */}
-          <motion.a
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 25px -5px rgba(255, 212, 0, 0.4)",
-              y: -1
-            }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            href="#contact"
-            className="hidden md:inline-flex items-center gap-2 bg-[#FFD400] text-gray-900 font-bold text-sm px-6 py-3 rounded-full hover:bg-[#E6BF00] transition-colors shadow-md"
-          >
-            Get a Quote
-          </motion.a>
+          <Link href="/request-quote">
+            <motion.span
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(255, 212, 0, 0.4)", y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              className="hidden md:inline-flex items-center gap-2 bg-[#FFD400] text-gray-900 font-bold text-sm px-6 py-3 rounded-full hover:bg-[#E6BF00] transition-colors shadow-md cursor-pointer"
+            >
+              Get a Quote
+            </motion.span>
+          </Link>
 
           {/* Mobile Hamburger */}
           <motion.button
@@ -129,16 +127,16 @@ export default function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                href="#contact"
-                onClick={handleLinkClick}
-                className="mt-4 bg-[#FFD400] text-gray-900 font-bold text-sm py-3.5 px-4 rounded-xl hover:bg-[#E6BF00] transition-colors text-center shadow-md block"
-              >
-                Get a Quote
-              </motion.a>
+              <Link href="/request-quote" onClick={handleLinkClick}>
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="mt-4 bg-[#FFD400] text-gray-900 font-bold text-sm py-3.5 px-4 rounded-xl hover:bg-[#E6BF00] transition-colors text-center shadow-md block cursor-pointer"
+                >
+                  Get a Quote
+                </motion.span>
+              </Link>
             </div>
           </motion.div>
         )}

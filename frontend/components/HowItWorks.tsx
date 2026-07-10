@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Package, Upload, Rocket } from "lucide-react";
+import Link from "next/link";
 
 const steps = [
   {
@@ -173,19 +174,16 @@ export default function HowItWorks() {
           transition={{ delay: 0.6 }}
           className="text-center mt-20"
         >
-          <motion.a
-            whileHover={{ 
-              scale: 1.04,
-              boxShadow: "0 20px 40px -10px rgba(0,87,217,0.5)",
-              y: -2
-            }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: "spring", stiffness: 450, damping: 18 }}
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-[#0057D9] text-white font-bold text-base px-9 py-4.5 rounded-full transition-all duration-300 shadow-lg"
-          >
-            Start Your Campaign Today
-          </motion.a>
+          <Link href="/request-quote">
+            <motion.span
+              whileHover={{ scale: 1.04, boxShadow: "0 20px 40px -10px rgba(0,87,217,0.5)", y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 450, damping: 18 }}
+              className="inline-flex items-center gap-2 bg-[#0057D9] text-white font-bold text-base px-9 py-4 rounded-full transition-all duration-300 shadow-lg cursor-pointer"
+            >
+              Start Your Campaign Today
+            </motion.span>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
-import AwloAdvert from "@/components/AwloAdvert";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -42,7 +42,10 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
             >
-        
+              <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
+              <span className="text-white/80 text-sm font-medium">
+                Premium Digital Billboard Advertising
+              </span>
             </motion.div>
 
             {/* Headline */}
@@ -77,16 +80,13 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
             >
-              <a
-                href="#contact"
+              <Link
+                href="/request-quote"
                 className="group inline-flex items-center gap-2 bg-[#0057D9] hover:bg-[#003DA0] text-white font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,87,217,0.4)] hover:shadow-[0_12px_40px_rgba(0,87,217,0.6)] hover:-translate-y-1"
               >
                 Get a Quote
-                <ArrowRight
-                  size={18}
-                  className="transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </a>
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10"
