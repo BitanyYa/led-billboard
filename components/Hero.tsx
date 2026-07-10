@@ -42,10 +42,7 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
             >
-              <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
-              <span className="text-white/80 text-sm font-medium">
-                Premium Digital Billboard Advertising
-              </span>
+        
             </motion.div>
 
             {/* Headline */}
@@ -144,11 +141,10 @@ export default function Hero() {
                       loop
                       muted
                       playsInline
-                      src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-at-night-with-light-trails-of-traffic-4835-large.mp4"
                       className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    {/* Dark overlay for contrast */}
-                    <div className="absolute inset-0 bg-black/40" />
+                    >
+                      <source src="/billboard-video.mp4" type="video/mp4" />
+                    </video>
 
                     {/* LED grid overlay */}
                     <div
@@ -159,9 +155,6 @@ export default function Hero() {
                         backgroundSize: "8px 8px",
                       }}
                     />
-
-                    {/* AWLO Advert Slideshow */}
-                    <AwloAdvert />
 
                     {/* Screen glare */}
                     <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/10 to-transparent" />
