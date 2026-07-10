@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import AwloAdvert from "@/components/AwloAdvert";
 
 // Highly relevant LED billboard / outdoor advertising videos
 const galleryImages = [
