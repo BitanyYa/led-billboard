@@ -80,14 +80,6 @@ export default function About() {
               />
 
               <div className="relative z-10">
-                <div className="flex justify-start mb-6">
-                  <img
-                    src="/logo.png"
-                    alt="AWLO Advert"
-                    className="h-24 w-auto"
-                  />
-                </div>
-
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { num: "10×7", unit: "Meters", label: "Screen Size" },
@@ -114,7 +106,7 @@ export default function About() {
             <motion.div
               animate={{ y: [-6, 6, -6] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100"
+              className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 z-20"
             >
               <div className="text-xs text-gray-500 mb-1">Est. in Ethiopia</div>
               <div className="font-heading font-bold text-gray-900 text-sm">
