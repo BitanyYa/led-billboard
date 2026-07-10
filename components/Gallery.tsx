@@ -8,25 +8,22 @@ import AwloAdvert from "@/components/AwloAdvert";
 // Highly relevant LED billboard / outdoor advertising videos
 const galleryImages = [
   {
-    id: 2,
+    id: 1,
     title: "Bole Road Junction",
     description: "Maximum peak hour exposure in the business district.",
-    aspect: "tall",
-    src: "https://assets.mixkit.co/videos/preview/mixkit-city-traffic-on-a-busy-avenue-at-night-4217-large.mp4",
+    src: "/bole-road.png",
+  },
+  {
+    id: 2,
+    title: "Mexico Square",
+    description: "High traffic pedestrian and commuter crossing.",
+    src: "/mexico-square.png",
   },
   {
     id: 3,
-    title: "Mexico Square",
-    description: "High traffic pedestrian and commuter crossing.",
-    aspect: "wide",
-    src: "https://assets.mixkit.co/videos/preview/mixkit-night-city-with-traffic-and-illuminated-buildings-4166-large.mp4",
-  },
-  {
-    id: 4,
     title: "Megenagna Interchange",
     description: "Long-distance visibility for transit traffic.",
-    aspect: "tall",
-    src: "https://assets.mixkit.co/videos/preview/mixkit-driving-on-a-highway-at-night-with-city-lights-in-the-4171-large.mp4",
+    src: "/megenagna.png",
   },
 ];
 
@@ -66,14 +63,10 @@ export default function Gallery() {
               }}
               className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
             >
-              {/* Image / Video Area */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-900">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
                   src={img.src}
+                  alt={img.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
