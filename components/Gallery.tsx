@@ -3,26 +3,27 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import AwloAdvert from "@/components/AwloAdvert";
 
 // Highly relevant LED billboard / outdoor advertising videos
 const galleryImages = [
   {
     id: 1,
-    title: "Bole Road Junction",
-    description: "Maximum peak hour exposure in the business district.",
-    src: "/bole-road.png",
+    title: "Night Vibe",
+    description: "Vibrant colors and perfect contrast in the dark.",
+    src: "/night-vibe.png",
   },
   {
     id: 2,
-    title: "Mexico Square",
-    description: "High traffic pedestrian and commuter crossing.",
-    src: "/mexico-square.png",
+    title: "Day Light View",
+    description: "Vibrant colors and perfect contrast in the dark.",
+    src: "/daylight-view.png",
   },
   {
     id: 3,
-    title: "Megenagna Interchange",
-    description: "Long-distance visibility for transit traffic.",
-    src: "/megenagna.png",
+    title: "Digital Brilliance",
+    description: "Long-  visibility for transit traffic.",
+    src: "/digital-brilliance.png",
   },
 ];
 

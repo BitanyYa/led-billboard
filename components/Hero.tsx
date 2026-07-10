@@ -126,7 +126,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="flex-1 w-full max-w-lg lg:max-w-none"
+            className="flex-1 w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto"
           >
             <div className="relative">
               {/* Glow */}
@@ -137,7 +137,7 @@ export default function Hero() {
                 {/* Screen bezel */}
                 <div className="p-4">
                   {/* Screen */}
-                  <div className="relative rounded-xl overflow-hidden aspect-[10/7] bg-gradient-to-br from-[#0057D9] via-[#0047B3] to-[#001F5C]">
+                  <div className="relative rounded-xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#0057D9] via-[#0047B3] to-[#001F5C]">
                     {/* Background video */}
                     <video
                       autoPlay
@@ -178,7 +178,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg"
+                className="absolute -top-4 -right-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse"
               >
                 LIVE NOW
               </motion.div>
@@ -188,7 +188,7 @@ export default function Hero() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-4 -left-4 bg-[#0057D9] text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg border border-white/20"
               >
-                10m × 7m Screen
+                7m × 10m Screen
               </motion.div>
             </div>
           </motion.div>

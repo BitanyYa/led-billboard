@@ -10,14 +10,14 @@ const specs = [
   {
     icon: Maximize2,
     label: "Screen Size",
-    value: "10m Ã— 7m",
+    value: "7m × 10m",
     detail: "70 square meters of display space",
     accent: "#0057D9",
   },
   {
     icon: Zap,
     label: "Resolution",
-    value: "3600 Ã— 720",
+    value: "720 × 3600",
     detail: "Crystal-clear pixel density",
     accent: "#FFD400",
   },
@@ -116,12 +116,12 @@ export default function Billboard() {
             <motion.div 
               whileHover={{ scale: 1.02, rotateY: 3 }}
               transition={{ duration: 0.4 }}
-              className="relative w-full max-w-md cursor-pointer"
+              className="relative w-full max-w-xs sm:max-w-sm cursor-pointer"
             >
               {/* Billboard structure */}
               <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-gray-700">
                 {/* Screen border */}
-                <div className="m-3 bg-black rounded-xl overflow-hidden relative" style={{ aspectRatio: "10/7" }}>
+                <div className="m-3 bg-black rounded-xl overflow-hidden relative" style={{ aspectRatio: "3/4" }}>
                   {/* LED display background video */}
                   <div className="absolute inset-0">
                     <video
@@ -161,7 +161,7 @@ export default function Billboard() {
               {/* Size indicators */}
               <div className="flex items-center gap-2 mt-4 justify-center">
                 <div className="h-px flex-1 bg-gray-400/30" />
-                <span className="text-gray-500 text-xs font-mono px-3 bg-white/60 backdrop-blur-sm py-1 rounded-full border border-gray-200/60">10 meters</span>
+                <span className="text-gray-500 text-xs font-mono px-3 bg-white/60 backdrop-blur-sm py-1 rounded-full border border-gray-200/60">7m × 10m Portrait Screen</span>
                 <div className="h-px flex-1 bg-gray-400/30" />
               </div>
             </motion.div>
