@@ -142,16 +142,16 @@ export default function AdminDashboardPage() {
       const since = new Date(Date.now() - 180 * 86400 * 1000).toISOString();
 
       const [
-        qTotal, qNew, qContacted, qConfirmed,
+        qTotal, qPending, qUnderReview, qApproved,
         cTotal, cNew,
         qToday, cToday,
         qRecent, cRecent,
         qAll, cAll,
       ] = await Promise.all([
         db.from("quote_requests").select("id", { count: "exact", head: true }),
-        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "new"),
-        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "contacted"),
-        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "confirmed"),
+        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "pending"),
+        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "under_review"),
+        db.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "approved"),
         db.from("contacts").select("id", { count: "exact", head: true }),
         db.from("contacts").select("id", { count: "exact", head: true }).eq("status", "new"),
         db.from("quote_requests").select("id", { count: "exact", head: true }).gte("created_at", today),
@@ -163,16 +163,16 @@ export default function AdminDashboardPage() {
       ]);
 
       setStats({
-        totalQuotes:        qTotal.count     ?? 0,
-        pendingQuotes:      (qNew.count ?? 0) + (qContacted.count ?? 0),
-        activeCampaigns:    qContacted.count ?? 0,
-        completedCampaigns: qConfirmed.count ?? 0,
-        totalContacts:      cTotal.count     ?? 0,
+        totalQuotes:        qTotal.count       ?? 0,
+        pendingQuotes:      (qPending.count ?? 0) + (qUnderReview.count ?? 0),
+        activeCampaigns:    qUnderReview.count  ?? 0,
+        completedCampaigns: qApproved.count     ?? 0,
+        totalContacts:      cTotal.count        ?? 0,
         newToday:           (qToday.count ?? 0) + (cToday.count ?? 0),
         // backwards compat
-        newQuotes:          qNew.count       ?? 0,
-        confirmedQuotes:    qConfirmed.count ?? 0,
-        newContacts:        cNew.count       ?? 0,
+        newQuotes:          qPending.count      ?? 0,
+        confirmedQuotes:    qApproved.count     ?? 0,
+        newContacts:        cNew.count          ?? 0,
         repliedContacts:    0,
       });
       setQuotes((qRecent.data   ?? []) as QuoteRequest[]);
@@ -195,7 +195,7 @@ export default function AdminDashboardPage() {
     { title: "New Today",       value: stats.newToday,           icon: Zap,          color: "#F59E0B", sub: "Quotes + messages" },
   ] : [];
 
-  const confirmedQuotes = quotes.filter(q => q.status === "confirmed");
+  const approvedQuotes = quotes.filter(q => q.status === "approved");
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
@@ -349,14 +349,14 @@ export default function AdminDashboardPage() {
               <h3 className="font-heading font-bold text-gray-900 text-sm">Recent Campaigns</h3>
               <p className="text-gray-400 text-xs mt-0.5">Confirmed advertising campaigns</p>
             </div>
-            <Link href="/admin/quotes" className="text-xs text-[#0057D9] font-semibold hover:underline flex items-center gap-1 mt-0.5">
+            <Link href="/admin/campaigns" className="text-xs text-[#0057D9] font-semibold hover:underline flex items-center gap-1 mt-0.5">
               View all <ArrowRight size={11} />
             </Link>
           </div>
 
           {loading ? (
             Array.from({ length: 3 }).map((_, i) => <SkeletonRow key={i} cols={5} />)
-          ) : confirmedQuotes.length === 0 ? (
+          ) : approvedQuotes.length === 0 ? (
             <div className="px-6 py-10 text-center">
               <div className="text-4xl mb-2">📋</div>
               <div className="text-gray-500 text-sm font-medium">No confirmed campaigns yet</div>
@@ -377,7 +377,7 @@ export default function AdminDashboardPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {confirmedQuotes.map((q) => (
+                  {approvedQuotes.map((q) => (
                     <tr key={q.id} className="hover:bg-gray-50/50 transition-colors">
                       <td className="px-5 py-3.5">
                         <Link href={`/admin/quotes/${q.id}`} className="font-semibold text-gray-900 text-sm hover:text-[#0057D9] transition-colors">
