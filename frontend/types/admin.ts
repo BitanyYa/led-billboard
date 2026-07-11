@@ -143,6 +143,18 @@ export const CONTACT_STATUS_CONFIG: Record<ContactStatus, { label: string; color
 };
 
 // ─────────────────────────────────────────────
+//  Internal Notes (shared by quotes + campaigns)
+// ─────────────────────────────────────────────
+export interface InternalNote {
+  id: string;
+  created_at: string;
+  content: string;
+  author: string;
+  quote_request_id: string | null;
+  campaign_id: string | null;
+}
+
+// ─────────────────────────────────────────────
 //  Campaign
 // ─────────────────────────────────────────────
 export interface Campaign {
@@ -164,6 +176,12 @@ export interface Campaign {
   payment_status: PaymentStatus;
   assigned_operator: string | null;
   admin_notes: string | null;
+  /** Number of times the ad plays per day (internal planning only) */
+  display_frequency: number;
+  /** Duration of each advertisement slot in seconds (internal planning only) */
+  ad_duration: number;
+  /** Internal scheduling notes visible to admin/operators only */
+  scheduling_notes: string | null;
 }
 
 export type CampaignStatus =

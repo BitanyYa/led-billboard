@@ -9,10 +9,11 @@ import {
   User, Building2, Target, CalendarDays, FileVideo,
   Download, MessageSquare, Clock, UserCog, CreditCard,
   Hash, Play, Pause, Volume2, VolumeX, Maximize2,
-  Package, ChevronRight, RefreshCw,
+  Package, ChevronRight, RefreshCw, Repeat2, Timer,
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import LoadingSpinner from "@/components/admin/LoadingSpinner";
+import InternalNotes from "@/components/admin/InternalNotes";
 import { getAdminClient } from "@/lib/supabase-admin";
 import type { Campaign, CampaignStatus, PaymentStatus } from "@/types/admin";
 import {
@@ -195,10 +196,13 @@ export default function CampaignDetailPage() {
   const [startDate,      setStartDate]      = useState("");
   const [endDate,        setEndDate]        = useState("");
   const [operator,       setOperator]       = useState("");
-  const [notes,          setNotes]          = useState("");
   const [customerName,   setCustomerName]   = useState("");
   const [company,        setCompany]        = useState("");
   const [objective,      setObjective]      = useState("");
+  /* ── scheduling fields ── */
+  const [displayFrequency,  setDisplayFrequency]  = useState("40");
+  const [adDuration,        setAdDuration]        = useState("20");
+  const [schedulingNotes,   setSchedulingNotes]   = useState("");
 
   /* ── load campaign + timeline ── */
   useEffect(() => {
@@ -214,10 +218,12 @@ export default function CampaignDetailPage() {
       setStartDate(c.start_date ?? "");
       setEndDate(c.end_date ?? "");
       setOperator(c.assigned_operator ?? "");
-      setNotes(c.admin_notes ?? "");
       setCustomerName(c.customer_name);
       setCompany(c.company ?? "");
       setObjective(c.campaign_objective);
+      setDisplayFrequency(String(c.display_frequency ?? 40));
+      setAdDuration(String(c.ad_duration ?? 20));
+      setSchedulingNotes(c.scheduling_notes ?? "");
 
       /* load timeline */
       const { data: tl } = await db
@@ -263,10 +269,12 @@ export default function CampaignDetailPage() {
       start_date:         startDate  || null,
       end_date:           endDate    || null,
       assigned_operator:  operator   || null,
-      admin_notes:        notes      || null,
       customer_name:      customerName,
       company:            company    || null,
       campaign_objective: objective,
+      display_frequency:  parseInt(displayFrequency, 10) || 40,
+      ad_duration:        parseInt(adDuration, 10)       || 20,
+      scheduling_notes:   schedulingNotes || null,
     };
 
     const { error: err } = await db
@@ -286,6 +294,10 @@ export default function CampaignDetailPage() {
       changes.push(`Start date → ${startDate ? fmtDate(startDate) : "Cleared"}`);
     if ((endDate || null) !== campaign.end_date)
       changes.push(`End date → ${endDate ? fmtDate(endDate) : "Cleared"}`);
+    if ((parseInt(displayFrequency, 10) || 40) !== (campaign.display_frequency ?? 40))
+      changes.push(`Display frequency → ${displayFrequency} plays/day`);
+    if ((parseInt(adDuration, 10) || 20) !== (campaign.ad_duration ?? 20))
+      changes.push(`Ad duration → ${adDuration}s`);
 
     if (changes.length > 0) {
       const entry = {
@@ -472,16 +484,26 @@ export default function CampaignDetailPage() {
 
           {/* Schedule */}
           <Card title="Schedule" icon={CalendarDays} color="#059669">
+            {/* Internal-only notice */}
+            <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-xl px-4 py-2.5 mb-5">
+              <span className="text-xs text-blue-700 font-medium">
+                📋 Scheduling information is for internal planning only. The dashboard does not communicate with billboard hardware.
+              </span>
+            </div>
+
+            {/* Dates */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <FieldLabel>Start Date</FieldLabel>
+                <FieldLabel>Campaign Start Date</FieldLabel>
                 <InputField type="date" value={startDate} onChange={setStartDate} />
               </div>
               <div>
-                <FieldLabel>End Date</FieldLabel>
+                <FieldLabel>Campaign End Date</FieldLabel>
                 <InputField type="date" value={endDate} onChange={setEndDate} />
               </div>
             </div>
+
+            {/* Date summary banner */}
             {startDate && endDate && (
               <div className="mt-4 bg-green-50 border border-green-100 rounded-xl px-4 py-3
                 flex items-center justify-between gap-3">
@@ -495,6 +517,84 @@ export default function CampaignDetailPage() {
                 )}
               </div>
             )}
+
+            {/* Frequency + Duration */}
+            <div className="grid sm:grid-cols-2 gap-4 mt-5">
+              <div>
+                <FieldLabel>Display Frequency</FieldLabel>
+                <div className="relative">
+                  <Repeat2 size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  <input
+                    type="number"
+                    min={1}
+                    value={displayFrequency}
+                    onChange={(e) => setDisplayFrequency(e.target.value)}
+                    className="w-full pl-9 pr-20 py-2.5 rounded-xl border border-gray-200 text-sm outline-none
+                      focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/10 transition-all bg-white"
+                  />
+                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium pointer-events-none">
+                    plays/day
+                  </span>
+                </div>
+              </div>
+              <div>
+                <FieldLabel>Advertisement Duration</FieldLabel>
+                <div className="relative">
+                  <Timer size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                  <input
+                    type="number"
+                    min={1}
+                    value={adDuration}
+                    onChange={(e) => setAdDuration(e.target.value)}
+                    className="w-full pl-9 pr-16 py-2.5 rounded-xl border border-gray-200 text-sm outline-none
+                      focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/10 transition-all bg-white"
+                  />
+                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium pointer-events-none">
+                    seconds
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Daily airtime summary */}
+            {displayFrequency && adDuration && (
+              <div className="mt-3 flex items-center gap-2 text-xs text-gray-500 bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5">
+                <Clock size={12} className="text-gray-400 flex-shrink-0" />
+                {parseInt(displayFrequency, 10) || 40} plays × {parseInt(adDuration, 10) || 20}s ={" "}
+                <span className="font-semibold text-gray-700">
+                  {Math.round(((parseInt(displayFrequency, 10) || 40) * (parseInt(adDuration, 10) || 20)) / 60)} min of airtime per day
+                </span>
+              </div>
+            )}
+
+            {/* Assigned Operator */}
+            <div className="mt-5">
+              <FieldLabel>Assigned Operator</FieldLabel>
+              <div className="relative">
+                <UserCog size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+                <input
+                  type="text"
+                  value={operator}
+                  onChange={(e) => setOperator(e.target.value)}
+                  placeholder="e.g. Yonas Bekele, Team A…"
+                  className="w-full pl-9 py-2.5 rounded-xl border border-gray-200 text-sm outline-none
+                    focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/10 transition-all bg-white"
+                />
+              </div>
+            </div>
+
+            {/* Scheduling Notes */}
+            <div className="mt-4">
+              <FieldLabel>Scheduling Notes</FieldLabel>
+              <textarea
+                value={schedulingNotes}
+                onChange={(e) => setSchedulingNotes(e.target.value)}
+                rows={3}
+                placeholder="Internal scheduling notes, time-slot preferences, blackout dates…"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none
+                  focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/10 resize-none transition-all"
+              />
+            </div>
           </Card>
 
           {/* Advertisement Preview */}
@@ -578,23 +678,9 @@ export default function CampaignDetailPage() {
             )}
           </Card>
 
-          {/* Operator */}
-          <Card title="Assigned Operator" icon={UserCog} color="#0057D9">
-            <FieldLabel>Operator Name</FieldLabel>
-            <InputField value={operator} onChange={setOperator} placeholder="e.g. Yonas Bekele, Team A…" />
-            {operator && (
-              <p className="text-xs text-gray-400 mt-2">
-                Currently assigned to <span className="font-semibold text-gray-600">{operator}</span>
-              </p>
-            )}
-          </Card>
-
           {/* Internal Notes */}
           <Card title="Internal Notes" icon={MessageSquare} color="#D97706">
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={5}
-              placeholder="Private notes visible only to admin users…"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none
-                focus:border-[#D97706] focus:ring-2 focus:ring-[#D97706]/10 resize-none transition-all" />
+            <InternalNotes parentId={id} parentType="campaign" accentColor="#D97706" />
           </Card>
 
           {/* Error + Save */}
@@ -732,13 +818,15 @@ export default function CampaignDetailPage() {
             <h3 className="font-heading font-bold text-gray-800 text-xs uppercase tracking-wider">Summary</h3>
             <div className="space-y-3 text-xs">
               {[
-                { label: "Package",   value: PACKAGE_LABELS[campaign.package]  },
-                { label: "Price",     value: PACKAGE_PRICES[campaign.package]  },
-                { label: "Category",  value: campaign.business_category         },
-                { label: "Operator",  value: operator || "—"                    },
-                { label: "Start",     value: startDate ? fmtDate(startDate) : "—" },
-                { label: "End",       value: endDate   ? fmtDate(endDate)   : "—" },
-                { label: "Created",   value: fmt(campaign.created_at)           },
+                { label: "Package",    value: PACKAGE_LABELS[campaign.package]                        },
+                { label: "Price",      value: PACKAGE_PRICES[campaign.package]                        },
+                { label: "Category",   value: campaign.business_category                               },
+                { label: "Operator",   value: operator || "—"                                         },
+                { label: "Start",      value: startDate ? fmtDate(startDate) : "—"                    },
+                { label: "End",        value: endDate   ? fmtDate(endDate)   : "—"                    },
+                { label: "Frequency",  value: displayFrequency ? `${displayFrequency} plays/day` : "—" },
+                { label: "Duration",   value: adDuration        ? `${adDuration}s`              : "—" },
+                { label: "Created",    value: fmt(campaign.created_at)                                 },
               ].map(({ label, value }) => (
                 <div key={label} className="flex justify-between gap-2">
                   <span className="text-gray-400 flex-shrink-0">{label}</span>
