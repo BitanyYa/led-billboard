@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "./database.types";
 import type { SettingsMap } from "@/types/admin";
 
 /**
@@ -8,14 +7,15 @@ import type { SettingsMap } from "@/types/admin";
  * Returns a flat key → value map with typed fallback defaults.
  */
 export async function fetchSettings(): Promise<SettingsMap> {
-  const supabase = createClient<Database>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = createClient<any>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
   const { data, error } = await supabase
     .from("settings")
-    .select("key, value");
+    .select("key, value") as { data: { key: string; value: string }[] | null; error: { message: string } | null };
 
   if (error || !data) {
     console.warn("[settings] Failed to fetch settings, using defaults:", error?.message);

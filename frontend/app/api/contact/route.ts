@@ -56,7 +56,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<ContactApiRes
   // 3. Server-side validation with Zod
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
-    const firstError = parsed.error.errors[0]?.message ?? "Validation failed.";
+    const firstError = parsed.error.issues[0]?.message ?? "Validation failed.";
     return NextResponse.json(
       { success: false, message: firstError },
       { status: 422 }

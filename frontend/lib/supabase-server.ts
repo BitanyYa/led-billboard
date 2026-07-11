@@ -1,10 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "./database.types";
 
 /**
  * Server-side Supabase client using the service role key.
  * NEVER import this in client components — it bypasses RLS.
  * Only use inside app/api routes and server actions.
+ *
+ * Results are cast to our own types at each call site.
  */
 export function createServerSupabaseClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -16,7 +17,8 @@ export function createServerSupabaseClient() {
     );
   }
 
-  return createClient<Database>(url, key, {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return createClient<any>(url, key, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
