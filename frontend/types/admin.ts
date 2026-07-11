@@ -141,3 +141,57 @@ export const CONTACT_STATUS_CONFIG: Record<ContactStatus, { label: string; color
   read:    { label: "Read",    color: "#7C3AED", bg: "#F5F3FF" },
   replied: { label: "Replied", color: "#059669", bg: "#ECFDF5" },
 };
+
+// ─────────────────────────────────────────────
+//  Campaign
+// ─────────────────────────────────────────────
+export interface Campaign {
+  id: string;
+  created_at: string;
+  campaign_number: string;
+  reference_number: string;
+  quote_request_id: string | null;
+  customer_name: string;
+  company: string | null;
+  package: QuoteRequest["package"];
+  business_category: string;
+  campaign_objective: string;
+  ad_file_url: string | null;
+  ad_file_name: string | null;
+  start_date: string | null;
+  end_date: string | null;
+  campaign_status: CampaignStatus;
+  payment_status: PaymentStatus;
+  assigned_operator: string | null;
+  admin_notes: string | null;
+}
+
+export type CampaignStatus =
+  | "ready_for_scheduling"
+  | "scheduled"
+  | "running"
+  | "paused"
+  | "completed"
+  | "cancelled";
+
+export type PaymentStatus =
+  | "pending"
+  | "paid"
+  | "partially_paid"
+  | "refunded";
+
+export const CAMPAIGN_STATUS_CONFIG: Record<CampaignStatus, { label: string; color: string; bg: string; icon: string }> = {
+  ready_for_scheduling: { label: "Ready for Scheduling", color: "#0057D9", bg: "#EFF6FF",  icon: "📋" },
+  scheduled:            { label: "Scheduled",            color: "#7C3AED", bg: "#F5F3FF",  icon: "🗓️" },
+  running:              { label: "Running",              color: "#059669", bg: "#ECFDF5",  icon: "▶️" },
+  paused:               { label: "Paused",               color: "#D97706", bg: "#FFFBEB",  icon: "⏸️" },
+  completed:            { label: "Completed",            color: "#6B7280", bg: "#F9FAFB",  icon: "✅" },
+  cancelled:            { label: "Cancelled",            color: "#DC2626", bg: "#FEF2F2",  icon: "❌" },
+};
+
+export const PAYMENT_STATUS_CONFIG: Record<PaymentStatus, { label: string; color: string; bg: string; icon: string }> = {
+  pending:       { label: "Pending",        color: "#D97706", bg: "#FFFBEB", icon: "⏳" },
+  paid:          { label: "Paid",           color: "#059669", bg: "#ECFDF5", icon: "💚" },
+  partially_paid:{ label: "Partially Paid", color: "#7C3AED", bg: "#F5F3FF", icon: "💜" },
+  refunded:      { label: "Refunded",       color: "#DC2626", bg: "#FEF2F2", icon: "↩️" },
+};

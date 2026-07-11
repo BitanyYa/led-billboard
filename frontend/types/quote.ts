@@ -9,7 +9,7 @@ export const step1Schema = z.object({
   email:                 z.string().email("Enter a valid email address"),
   phone:                 z.string().min(7, "Enter a valid phone number"),
   preferredContactMethod: z.enum(["phone", "email", "whatsapp"], {
-    required_error: "Select a preferred contact method",
+    message: "Select a preferred contact method",
   }),
 });
 
@@ -40,17 +40,17 @@ export const CAMPAIGN_OBJECTIVES = [
 export const step2Schema = z.object({
   package: z.enum(
     ["1_week", "1_month", "3_months", "6_months", "1_year"],
-    { required_error: "Please select an advertising package" }
+    { message: "Please select an advertising package" }
   ),
   businessCategory: z.enum(
     ["Retail","Restaurant","Hotel","Electronics","Healthcare",
      "Education","Real Estate","Government","NGO","Other"],
-    { required_error: "Please select your business category" }
+    { message: "Please select your business category" }
   ),
   campaignObjective: z.enum(
     ["Brand Awareness","Product Promotion","Event Promotion",
      "Grand Opening","Seasonal Promotion","Other"],
-    { required_error: "Please select a campaign objective" }
+    { message: "Please select a campaign objective" }
   ),
 });
 
