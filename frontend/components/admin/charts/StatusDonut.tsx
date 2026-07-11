@@ -38,7 +38,8 @@ export default function StatusDonut({ data, title }: Props) {
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number, name: string) => [value, name]}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            formatter={(value: any, name: any) => [value, name] as [any, any]}
             contentStyle={{
               borderRadius: "12px", border: "1px solid #E5E7EB",
               boxShadow: "0 4px 16px rgba(0,0,0,0.08)", fontSize: 12,

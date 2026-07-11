@@ -28,7 +28,8 @@ export default function Step3Upload({ defaultValues, onNext, onBack, direction }
     setValue,
     formState: { errors },
   } = useForm<Step3Data>({
-    resolver: zodResolver(step3Schema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(step3Schema) as any,
     defaultValues: { sendLater: defaultValues.sendLater ?? false, adFile: defaultValues.adFile ?? null },
   });
 

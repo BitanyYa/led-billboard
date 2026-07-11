@@ -4,15 +4,16 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, MessageSquare, FileText,
-  Settings, LogOut, X,
+  Settings, LogOut, X, Megaphone,
 } from "lucide-react";
 import { getAdminClient } from "@/lib/supabase-admin";
 
 const NAV_ITEMS = [
-  { href: "/admin",          label: "Dashboard",  icon: LayoutDashboard },
-  { href: "/admin/quotes",   label: "Quotes",     icon: FileText        },
-  { href: "/admin/contacts", label: "Messages",   icon: MessageSquare   },
-  { href: "/admin/settings", label: "Settings",   icon: Settings        },
+  { href: "/admin",           label: "Dashboard",  icon: LayoutDashboard },
+  { href: "/admin/quotes",    label: "Quotes",     icon: FileText        },
+  { href: "/admin/campaigns", label: "Campaigns",  icon: Megaphone       },
+  { href: "/admin/contacts",  label: "Messages",   icon: MessageSquare   },
+  { href: "/admin/settings",  label: "Settings",   icon: Settings        },
 ];
 
 interface Props {

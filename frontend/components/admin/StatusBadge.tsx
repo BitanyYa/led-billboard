@@ -1,18 +1,25 @@
 "use client";
 
-import { QUOTE_STATUS_CONFIG, CONTACT_STATUS_CONFIG } from "@/types/admin";
-import type { QuoteStatus, ContactStatus } from "@/types/admin";
+import {
+  QUOTE_STATUS_CONFIG,
+  CONTACT_STATUS_CONFIG,
+  CAMPAIGN_STATUS_CONFIG,
+  PAYMENT_STATUS_CONFIG,
+} from "@/types/admin";
+import type { QuoteStatus, ContactStatus, CampaignStatus, PaymentStatus } from "@/types/admin";
 
 interface Props {
   status: string;
-  type: "quote" | "contact";
+  type: "quote" | "contact" | "campaign" | "payment";
 }
 
 export default function StatusBadge({ status, type }: Props) {
-  const config =
-    type === "quote"
-      ? QUOTE_STATUS_CONFIG[status as QuoteStatus]
-      : CONTACT_STATUS_CONFIG[status as ContactStatus];
+  let config: { label: string; color: string; bg: string } | undefined;
+
+  if (type === "quote")    config = QUOTE_STATUS_CONFIG[status as QuoteStatus];
+  if (type === "contact")  config = CONTACT_STATUS_CONFIG[status as ContactStatus];
+  if (type === "campaign") config = CAMPAIGN_STATUS_CONFIG[status as CampaignStatus];
+  if (type === "payment")  config = PAYMENT_STATUS_CONFIG[status as PaymentStatus];
 
   if (!config) return (
     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-500">
