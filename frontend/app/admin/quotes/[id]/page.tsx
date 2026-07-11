@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import LoadingSpinner from "@/components/admin/LoadingSpinner";
+import InternalNotes from "@/components/admin/InternalNotes";
 import { getAdminClient } from "@/lib/supabase-admin";
 import type { QuoteRequest, QuoteStatus, QuoteTimeline } from "@/types/admin";
 import { QUOTE_STATUS_CONFIG, PACKAGE_LABELS, PACKAGE_PRICES } from "@/types/admin";
@@ -147,7 +148,6 @@ export default function QuoteDetailPage() {
   const [quote,     setQuote]     = useState<QuoteRequest | null>(null);
   const [timeline,  setTimeline]  = useState<QuoteTimeline[]>([]);
   const [loading,   setLoading]   = useState(true);
-  const [notes,     setNotes]     = useState("");
   const [status,    setStatus]    = useState<QuoteStatus>("pending");
   const [saving,    setSaving]    = useState(false);
   const [saved,     setSaved]     = useState(false);
@@ -170,7 +170,6 @@ export default function QuoteDetailPage() {
       ]);
       if (!data) { router.replace("/admin/quotes"); return; }
       setQuote(data as QuoteRequest);
-      setNotes(data.admin_notes ?? "");
       setStatus((data.status as QuoteStatus) ?? "pending");
       setTimeline((tl ?? []) as QuoteTimeline[]);
 
@@ -192,7 +191,7 @@ export default function QuoteDetailPage() {
     const db = getAdminClient();
     const { error: err } = await db
       .from("quote_requests")
-      .update({ status: newStatus, admin_notes: notes || null })
+      .update({ status: newStatus })
       .eq("id", id);
     if (err) throw err;
 
@@ -207,7 +206,7 @@ export default function QuoteDetailPage() {
         .order("created_at", { ascending: false });
       setTimeline((tl ?? []) as QuoteTimeline[]);
     }
-    setQuote((prev) => prev ? { ...prev, status: newStatus, admin_notes: notes } : prev);
+    setQuote((prev) => prev ? { ...prev, status: newStatus } : prev);
   }
 
   /** Build a campaign number: CAM-YYYY-NNNN */
@@ -516,9 +515,7 @@ export default function QuoteDetailPage() {
 
             {/* Internal notes */}
             <Section title="Internal Notes" icon={MessageSquare} color="#D97706">
-              <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
-                placeholder="Private notes visible only to admins…"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none focus:border-[#0057D9] focus:ring-2 focus:ring-[#0057D9]/15 resize-none transition-all" />
+              <InternalNotes parentId={id} parentType="quote_request" accentColor="#D97706" />
             </Section>
 
             {/* Change Status */}
