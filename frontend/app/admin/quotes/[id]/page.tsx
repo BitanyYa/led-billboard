@@ -5,10 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft, Mail, Phone, User, Clock, Building2,
+  ArrowLeft, Mail, Phone, User, Clock,
   Save, CheckCircle, AlertCircle, FileVideo,
   Download, CalendarDays, Target, MessageSquare,
-  ThumbsUp, ThumbsDown, Image as ImageIcon,
+  Image as ImageIcon,
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import LoadingSpinner from "@/components/admin/LoadingSpinner";
@@ -110,10 +110,6 @@ export default function QuoteDetailPage() {
     setQuote((prev) => prev ? { ...prev, status, admin_notes: notes } : prev);
   };
 
-  const handleQuickStatus = async (s: QuoteStatus) => {
-    setStatus(s);
-  };
-
   const handleDownload = async () => {
     if (!quote?.ad_file_url) return;
     try {
@@ -182,40 +178,6 @@ export default function QuoteDetailPage() {
           </div>
         </div>
 
-        {/* Quick action buttons */}
-        <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-gray-50">
-          <button
-            onClick={() => { handleQuickStatus("approved"); }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-50 text-emerald-700 text-sm font-semibold hover:bg-emerald-100 transition-colors border border-emerald-200"
-          >
-            <ThumbsUp size={14} /> Approve Request
-          </button>
-          <button
-            onClick={() => { handleQuickStatus("rejected"); }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-600 text-sm font-semibold hover:bg-red-100 transition-colors border border-red-200"
-          >
-            <ThumbsDown size={14} /> Reject Request
-          </button>
-          <a
-            href={`mailto:${quote.email}?subject=Re: Your Quote Request ${quote.reference_number}`}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0057D9]/8 text-[#0057D9] text-sm font-semibold hover:bg-[#0057D9]/15 transition-colors border border-[#0057D9]/20"
-          >
-            <Mail size={14} /> Contact by Email
-          </a>
-          <a
-            href={`https://wa.me/${quote.phone.replace(/\D/g,"")}`}
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366]/10 text-[#25D366] text-sm font-semibold hover:bg-[#25D366]/20 transition-colors border border-[#25D366]/20"
-          >
-            <Phone size={14} /> WhatsApp
-          </a>
-          <a
-            href={`tel:${quote.phone}`}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-sm font-semibold hover:bg-gray-200 transition-colors border border-gray-200"
-          >
-            <Phone size={14} /> Call
-          </a>
-        </div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-5">
@@ -367,17 +329,6 @@ export default function QuoteDetailPage() {
 
         {/* ── Sidebar ── */}
         <div className="space-y-5">
-
-          {/* Company card */}
-          {quote.company_name && (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-              <h3 className="font-heading font-bold text-gray-800 text-xs uppercase tracking-wider mb-3">Company</h3>
-              <div className="flex items-center gap-2 text-sm text-gray-700">
-                <Building2 size={15} className="text-gray-400" />
-                {quote.company_name}
-              </div>
-            </div>
-          )}
 
           {/* Quick contact */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
