@@ -2,27 +2,42 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Globe, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import type { SettingsMap } from "@/types/admin";
+import { getSetting } from "@/lib/settings";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "Home",      href: "#home"      },
+  { label: "About",     href: "#about"     },
   { label: "Billboard", href: "#billboard" },
-  { label: "Packages", href: "#packages" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Packages",  href: "#packages"  },
+  { label: "Gallery",   href: "#gallery"   },
+  { label: "Contact",   href: "#contact"   },
 ];
 
-const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-];
+interface Props {
+  settings: SettingsMap;
+}
 
-export default function Footer() {
+export default function Footer({ settings }: Props) {
+  const phone    = getSetting(settings, "phone",    "+251 959 15 55 55");
+  const email    = getSetting(settings, "email",    "awloadvertising@gmail.com");
+  const address  = getSetting(settings, "address",  "Awlo Business Center, Bole, Addis Ababa");
+  const mapsUrl  = getSetting(settings, "maps_url", "#");
+  const website  = getSetting(settings, "website",  "#");
+  const desc     = getSetting(settings, "company_description",
+    "Ethiopia's premier LED billboard advertising company. We help businesses reach thousands of potential customers every day with stunning digital displays.");
+
+  const socialLinks = [
+    { icon: Facebook, href: getSetting(settings, "facebook",  "#"), label: "Facebook"  },
+    { icon: Twitter,  href: getSetting(settings, "twitter",   "#"), label: "Twitter"   },
+    { icon: Instagram,href: getSetting(settings, "instagram", "#"), label: "Instagram" },
+    { icon: Linkedin, href: getSetting(settings, "linkedin",  "#"), label: "LinkedIn"  },
+  ];
+
+  const phoneE164 = phone.replace(/\D/g, "");
+
   return (
     <footer className="relative bg-gradient-to-b from-[#060E1E] to-[#01050F] text-white border-t border-white/5 overflow-hidden">
-      {/* Decorative blurs */}
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[200px] bg-[#0057D9]/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -40,44 +55,56 @@ export default function Footer() {
             </div>
 
             <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-md font-light">
-              Ethiopia&apos;s premier LED billboard advertising company. We help
-              businesses reach thousands of potential customers every day with
-              stunning digital displays at Awlo Business Center.
+              {desc}
             </p>
 
             <div className="space-y-3.5">
               <motion.a
                 whileHover={{ x: 4 }}
-                href="tel:+251959155555"
+                href={`tel:+${phoneE164}`}
                 className="flex items-center gap-3 text-white/80 hover:text-[#FFD400] transition-colors text-sm group"
               >
-                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
                   <Phone size={14} className="group-hover:scale-110 transition-transform" />
                 </div>
-                +251 959 15 55 55
+                {phone}
               </motion.a>
+
               <motion.a
                 whileHover={{ x: 4 }}
-                href="mailto:awloadvertising@gmail.com"
+                href={`mailto:${email}`}
                 className="flex items-center gap-3 text-white/80 hover:text-[#FFD400] transition-colors text-sm group"
               >
-                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
                   <Mail size={14} className="group-hover:scale-110 transition-transform" />
                 </div>
-                awloadvertising@gmail.com
+                {email}
               </motion.a>
-    
-              <div className="flex items-center gap-3 text-white/80 text-sm group">
-                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
-                  <MapPin size={14} className="group-hover:scale-110 transition-transform" />
+
+              <motion.a
+                whileHover={{ x: 4 }}
+                href={website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-white/80 hover:text-[#FFD400] transition-colors text-sm group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
+                  <Globe size={14} className="group-hover:scale-110 transition-transform" />
+                </div>
+                {website.replace(/^https?:\/\//, "")}
+              </motion.a>
+
+              <div className="flex items-center gap-3 text-white/80 text-sm">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                  <MapPin size={14} />
                 </div>
                 <a
-                  href="https://www.google.com/maps/place/Awlo+Business+center/@9.02497,38.74689,17z"
+                  href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#FFD400] transition-colors"
                 >
-                  Awlo Business Center Bole, Addis Ababa
+                  {address}
                 </a>
               </div>
             </div>
@@ -104,7 +131,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Business Hours & Social */}
+          {/* Hours & Social */}
           <div>
             <h3 className="font-heading font-bold text-white text-base mb-6 tracking-wide">
               Connect With Us
@@ -115,9 +142,11 @@ export default function Footer() {
                 Business Hours
               </div>
               <div className="text-white/60 text-sm space-y-1.5 font-light">
-                <div>Mon - Fri: 8:00 AM - 6:00 PM</div>
-                <div>Sat: 9:00 AM - 4:00 PM</div>
-                <div>Sun: Closed</div>
+                <div>{getSetting(settings, "hours_weekday",  "Mon - Fri: 8:00 AM - 6:00 PM")}</div>
+                <div>{getSetting(settings, "hours_saturday", "Sat: 9:00 AM - 4:00 PM")}</div>
+                <div className={getSetting(settings, "hours_sunday", "Closed") === "Closed" ? "text-red-400/70" : ""}>
+                  {getSetting(settings, "hours_sunday", "Closed")}
+                </div>
               </div>
             </div>
 
@@ -126,16 +155,13 @@ export default function Footer() {
                 const Icon = social.icon;
                 return (
                   <motion.a
-                    whileHover={{ 
-                      y: -4, 
-                      scale: 1.1,
-                      backgroundColor: "#0057D9",
-                      boxShadow: "0 10px 15px -3px rgba(0, 87, 217, 0.4)"
-                    }}
+                    key={social.label}
+                    whileHover={{ y: -4, scale: 1.1, backgroundColor: "#0057D9", boxShadow: "0 10px 15px -3px rgba(0,87,217,0.4)" }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    key={social.label}
                     href={social.href}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-300 group"
                   >
@@ -150,16 +176,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 text-sm text-white/40 font-light">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              Â© {new Date().getFullYear()} AWLO ADVERT. All rights reserved.
-            </div>
+            <div>© {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-white/70 transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white/70 transition-colors duration-200">
-                Terms of Service
-              </a>
+              <a href="#" className="hover:text-white/70 transition-colors duration-200">Privacy Policy</a>
+              <a href="#" className="hover:text-white/70 transition-colors duration-200">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -167,5 +187,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

@@ -3,23 +3,35 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
+import type { SettingsMap } from "@/types/admin";
+import { getSetting } from "@/lib/settings";
 
-export default function Hero() {
+interface Props { settings: SettingsMap; }
+
+export default function Hero({ settings }: Props) {
+  const headline    = getSetting(settings, "hero_headline",    "Make Your Brand Impossible to Ignore");
+  const subheadline = getSetting(settings, "hero_subheadline", "Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.");
+  const badgeText   = getSetting(settings, "hero_badge_text",  "Premium Digital Billboard Advertising");
+  const stat1v      = getSetting(settings, "hero_stat1_value", "40x");
+  const stat1l      = getSetting(settings, "hero_stat1_label", "Daily Displays");
+  const stat2v      = getSetting(settings, "hero_stat2_value", "10×7m");
+  const stat2l      = getSetting(settings, "hero_stat2_label", "Screen Size");
+  const stat3v      = getSetting(settings, "hero_stat3_value", "24/7");
+  const stat3l      = getSetting(settings, "hero_stat3_label", "Visibility");
+
+  const stats = [
+    { value: stat1v, label: stat1l },
+    { value: stat2v, label: stat2l },
+    { value: stat3v, label: stat3l },
+  ];
+
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Deep night city gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#020B1A] via-[#030F24] to-[#061630]" />
-
-        {/* LED glow effect top */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0057D9]/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-[#FFD400]/10 rounded-full blur-[120px]" />
-
-        {/* Grid lines */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -33,6 +45,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="flex flex-col lg:flex-row items-center gap-16">
+
           {/* Text Side */}
           <div className="flex-1 text-center lg:text-left">
             {/* Badge */}
@@ -43,9 +56,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
-              <span className="text-white/80 text-sm font-medium">
-                Premium Digital Billboard Advertising
-              </span>
+              <span className="text-white/80 text-sm font-medium">{badgeText}</span>
             </motion.div>
 
             {/* Headline */}
@@ -55,11 +66,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.1] mb-6"
             >
-              Make Your Brand{" "}
-              <span className="relative inline-block">
-                <span className="text-[#FFD400]">Impossible</span>
-              </span>{" "}
-              to Ignore
+              {headline}
             </motion.h1>
 
             {/* Subheadline */}
@@ -69,8 +76,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-white/70 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
             >
-              Reach thousands of potential customers every day through premium
-              LED billboard advertising. Your message, bigger and brighter than ever.
+              {subheadline}
             </motion.p>
 
             {/* CTAs */}
@@ -103,15 +109,9 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="mt-14 flex items-center gap-8 justify-center lg:justify-start flex-wrap"
             >
-              {[
-                { value: "40x", label: "Daily Displays" },
-                { value: "10×7m", label: "Screen Size" },
-                { value: "24/7", label: "Visibility" },
-              ].map((stat) => (
+              {stats.map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
-                  <div className="font-heading font-bold text-3xl text-[#FFD400]">
-                    {stat.value}
-                  </div>
+                  <div className="font-heading font-bold text-3xl text-[#FFD400]">{stat.value}</div>
                   <div className="text-white/50 text-sm mt-1">{stat.label}</div>
                 </div>
               ))}
@@ -126,62 +126,44 @@ export default function Hero() {
             className="flex-1 w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto"
           >
             <div className="relative">
-              {/* Glow */}
               <div className="absolute -inset-4 bg-[#0057D9]/30 rounded-3xl blur-2xl" />
-
-              {/* Billboard frame */}
               <div className="relative bg-gradient-to-b from-[#0A1628] to-[#0D1F3C] rounded-2xl border border-white/10 shadow-[0_0_60px_rgba(0,87,217,0.3)] overflow-hidden">
-                {/* Screen bezel */}
                 <div className="p-4">
-                  {/* Screen */}
                   <div className="relative rounded-xl overflow-hidden aspect-[3/4] bg-gradient-to-br from-[#0057D9] via-[#0047B3] to-[#001F5C]">
-                    {/* Background video */}
                     <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                      autoPlay loop muted playsInline
                       className="absolute inset-0 w-full h-full object-cover"
                     >
                       <source src="/billboard-video.mp4" type="video/mp4" />
                     </video>
-
-                    {/* LED grid overlay */}
                     <div
                       className="absolute inset-0 opacity-20"
                       style={{
-                        backgroundImage:
-                          "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+                        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
                         backgroundSize: "8px 8px",
                       }}
                     />
-
-                    {/* Screen glare */}
                     <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-white/10 to-transparent" />
                   </div>
                 </div>
-
-                {/* Billboard pole/base */}
                 <div className="h-6 bg-gradient-to-b from-[#0A1628] to-[#060E1E] mx-6 flex items-center justify-center">
                   <div className="w-16 h-1 bg-white/10 rounded-full" />
                 </div>
               </div>
 
-              {/* Floating labels */}
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg animate-pulse"
+                className="absolute -top-4 -right-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg"
               >
                 LIVE NOW
               </motion.div>
-
               <motion.div
                 animate={{ y: [5, -5, 5] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -bottom-4 -left-4 bg-[#0057D9] text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg border border-white/20"
               >
-                7m × 10m Screen
+                {stat2v} Screen
               </motion.div>
             </div>
           </motion.div>
@@ -202,17 +184,6 @@ export default function Hero() {
           className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
         />
       </motion.div>
-
-      <style jsx>{`
-        @keyframes scan {
-          0% { top: -100%; }
-          100% { top: 200%; }
-        }
-        .animate-scan {
-          animation: scan 4s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
-
