@@ -15,8 +15,9 @@ export interface Database {
           created_at: string;
           name: string;
           email: string;
-          phone: string;
+          phone: string | null;
           company: string | null;
+          subject: string;
           message: string;
           status: "new" | "read" | "replied";
         };
@@ -25,8 +26,9 @@ export interface Database {
           created_at?: string;
           name: string;
           email: string;
-          phone: string;
+          phone?: string | null;
           company?: string | null;
+          subject: string;
           message: string;
           status?: "new" | "read" | "replied";
         };
@@ -35,8 +37,9 @@ export interface Database {
           created_at?: string;
           name?: string;
           email?: string;
-          phone?: string;
+          phone?: string | null;
           company?: string | null;
+          subject?: string;
           message?: string;
           status?: "new" | "read" | "replied";
         };

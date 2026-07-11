@@ -66,23 +66,19 @@ export default function Footer() {
                 </div>
                 awloadvertising@gmail.com
               </motion.a>
-              <motion.a
-                whileHover={{ x: 4 }}
-                href="https://www.awloadvertising.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/80 hover:text-[#FFD400] transition-colors text-sm group"
-              >
-                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
-                  <Globe size={14} className="group-hover:scale-110 transition-transform" />
-                </div>
-                www.awloadvertising.com
-              </motion.a>
+    
               <div className="flex items-center gap-3 text-white/80 text-sm group">
-                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 flex items-center justify-center">
-                  <MapPin size={14} />
+                <div className="w-8.5 h-8.5 rounded-lg bg-white/5 group-hover:bg-[#FFD400]/20 flex items-center justify-center transition-colors">
+                  <MapPin size={14} className="group-hover:scale-110 transition-transform" />
                 </div>
-                Awlo Business Center, Addis Ababa
+                <a
+                  href="https://www.google.com/maps/place/Awlo+Business+center/@9.02497,38.74689,17z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#FFD400] transition-colors"
+                >
+                  Awlo Business Center Bole, Addis Ababa
+                </a>
               </div>
             </div>
           </div>
