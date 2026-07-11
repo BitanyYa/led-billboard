@@ -173,6 +173,15 @@ export default function QuoteDetailPage() {
       setNotes(data.admin_notes ?? "");
       setStatus((data.status as QuoteStatus) ?? "pending");
       setTimeline((tl ?? []) as QuoteTimeline[]);
+
+      // Pre-populate campaign link if one already exists for this quote
+      const { data: existingCampaign } = await db
+        .from("campaigns")
+        .select("id")
+        .eq("quote_request_id", data.id)
+        .maybeSingle();
+      if (existingCampaign) setCampaignCreated(existingCampaign.id);
+
       setLoading(false);
     }
     load();
@@ -218,8 +227,40 @@ export default function QuoteDetailPage() {
     if (!quote) return;
     const statusChanged = status !== quote.status;
 
+    // If moving AWAY from approved, delete the linked campaign
+    if (quote.status === "approved" && status !== "approved" && statusChanged && campaignCreated) {
+      setSaving(true); setError("");
+      try {
+        const db = getAdminClient();
+        await db.from("campaigns").delete().eq("id", campaignCreated);
+        setCampaignCreated(null);
+        await persistSave(status, true);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+      } catch (e: unknown) {
+        setError(e instanceof Error ? e.message : "Save failed");
+      } finally {
+        setSaving(false);
+      }
+      return;
+    }
+
     if (status === "approved" && statusChanged) {
-      // Show campaign dialog before committing
+      // If a campaign already exists for this quote, don't prompt again
+      if (campaignCreated) {
+        setSaving(true); setError("");
+        try {
+          await persistSave(status, true);
+          setSaved(true);
+          setTimeout(() => setSaved(false), 3000);
+        } catch (e: unknown) {
+          setError(e instanceof Error ? e.message : "Save failed");
+        } finally {
+          setSaving(false);
+        }
+        return;
+      }
+      // No campaign yet — show the creation dialog
       setPendingStatus(status);
       setShowCampaignDialog(true);
       return;
@@ -260,6 +301,22 @@ export default function QuoteDetailPage() {
       await persistSave(pendingStatus, true);
 
       const db = getAdminClient();
+
+      // Guard: check if a campaign already exists for this quote
+      const { data: existing } = await db
+        .from("campaigns")
+        .select("id")
+        .eq("quote_request_id", quote.id)
+        .maybeSingle();
+
+      if (existing) {
+        // Already has a campaign — just link to it, don't create a duplicate
+        setCampaignCreated(existing.id);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+        return;
+      }
+
       const campaignNumber = await generateCampaignNumber();
       const { data: camp, error: campErr } = await db.from("campaigns").insert({
         campaign_number:    campaignNumber,
@@ -502,6 +559,11 @@ export default function QuoteDetailPage() {
                 {status === "approved" && quote.status !== "approved" && (
                   <p className="text-xs text-[#059669] font-medium flex items-center gap-1.5">
                     <Megaphone size={12} /> Saving will prompt campaign creation
+                  </p>
+                )}
+                {status !== "approved" && quote.status === "approved" && campaignCreated && (
+                  <p className="text-xs text-red-500 font-medium flex items-center gap-1.5">
+                    <AlertCircle size={12} /> Saving will delete the linked campaign
                   </p>
                 )}
               </div>
