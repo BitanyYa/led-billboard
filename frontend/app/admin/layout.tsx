@@ -7,10 +7,12 @@ import AdminTopbar from "@/components/admin/AdminTopbar";
 import { getAdminClient } from "@/lib/supabase-admin";
 
 const PAGE_TITLES: Record<string, string> = {
-  "/admin":           "Dashboard",
-  "/admin/quotes":    "Quote Requests",
-  "/admin/contacts":  "Contact Messages",
-  "/admin/settings":  "Settings",
+  "/admin":            "Dashboard",
+  "/admin/quotes":     "Quote Requests",
+  "/admin/contacts":   "Contact Messages",
+  "/admin/packages":   "Packages",
+  "/admin/gallery":    "Gallery",
+  "/admin/settings":   "Settings",
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
