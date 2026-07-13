@@ -11,7 +11,7 @@ interface Props { settings: SettingsMap; }
 export default function Hero({ settings }: Props) {
   const headline    = getSetting(settings, "hero_headline",    "Make Your Brand Impossible to Ignore");
   const subheadline = getSetting(settings, "hero_subheadline", "Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.");
-  const badgeText   = getSetting(settings, "hero_badge_text",  "Premium Digital Billboard Advertising");
+  const videoUrl    = getSetting(settings, "hero_video_url",   "") || "/billboard-video.mp4";
   const stat1v      = getSetting(settings, "hero_stat1_value", "40x");
   const stat1l      = getSetting(settings, "hero_stat1_label", "Daily Displays");
   const stat2v      = getSetting(settings, "hero_stat2_value", "10×7m");
@@ -48,17 +48,6 @@ export default function Hero({ settings }: Props) {
 
           {/* Text Side */}
           <div className="flex-1 text-center lg:text-left">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
-            >
-              <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
-              <span className="text-white/80 text-sm font-medium">{badgeText}</span>
-            </motion.div>
-
             {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -134,7 +123,7 @@ export default function Hero({ settings }: Props) {
                       autoPlay loop muted playsInline
                       className="absolute inset-0 w-full h-full object-cover"
                     >
-                      <source src="/billboard-video.mp4" type="video/mp4" />
+                      <source src={videoUrl} type="video/mp4" />
                     </video>
                     <div
                       className="absolute inset-0 opacity-20"

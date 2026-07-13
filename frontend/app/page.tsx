@@ -1,4 +1,4 @@
-import { fetchSettings } from "@/lib/settings";
+import { fetchSettings, fetchPackages } from "@/lib/settings";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,10 +10,12 @@ import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-// Server component — fetches settings once per request, passes down as props.
-// No extra client-side network call needed.
+// Server component — fetches settings + packages once per request.
 export default async function Home() {
-  const settings = await fetchSettings();
+  const [settings, packages] = await Promise.all([
+    fetchSettings(),
+    fetchPackages(),
+  ]);
 
   return (
     <main className="min-h-screen">
@@ -22,7 +24,7 @@ export default async function Home() {
       <About     settings={settings} />
       <WhyUs />
       <Billboard settings={settings} />
-      <Packages  settings={settings} />
+      <Packages  settings={settings} packages={packages} />
       <HowItWorks />
       <Gallery />
       <Contact   settings={settings} />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -39,13 +40,26 @@ const DEFAULT_FORM: QuoteFormData = {
   step4: { preferredStartDate: "", specialInstructions: "" },
 };
 
-export default function RequestQuotePage() {
+function RequestQuoteContent() {
+  const searchParams  = useSearchParams();
   const [currentStep, setCurrentStep]   = useState(1);
   const [direction,   setDirection]      = useState<1 | -1>(1);
   const [formData,    setFormData]       = useState<QuoteFormData>(DEFAULT_FORM);
   const [isSubmitting, setIsSubmitting]  = useState(false);
   const [submitted,   setSubmitted]      = useState(false);
   const [referenceNumber, setRefNum]     = useState("");
+
+  // Pre-select package from ?package= query param (set by homepage cards)
+  useEffect(() => {
+    const param = searchParams.get("package");
+    const valid = ["1_week", "1_month", "3_months", "6_months", "1_year"];
+    if (param && valid.includes(param)) {
+      setFormData((f) => ({
+        ...f,
+        step2: { ...f.step2, package: param as Step2Data["package"] },
+      }));
+    }
+  }, [searchParams]);
 
   // ── Navigate forward ──────────────────────────────────────────
   const goNext = () => {
@@ -184,5 +198,13 @@ export default function RequestQuotePage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function RequestQuotePage() {
+  return (
+    <Suspense>
+      <RequestQuoteContent />
+    </Suspense>
   );
 }
