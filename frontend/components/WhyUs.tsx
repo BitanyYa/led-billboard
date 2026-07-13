@@ -26,7 +26,7 @@ const benefits = [
     icon: Monitor,
     title: "Premium LED Display",
     description:
-      "A stunning 10m Ã— 7m LED screen with vibrant colors and sharp resolution that makes every ad pop.",
+      "A stunning 10m — 7m LED screen with vibrant colors and sharp resolution that makes every ad pop.",
     color: "text-[#D9A000]",
     bg: "bg-[#FFD400]/15",
     accent: "shadow-[#FFD400]/10",

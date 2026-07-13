@@ -31,6 +31,7 @@ const BLANK: PackageFormData = {
   duration: "",
   advertisement_length: 20,
   displays_per_day: 40,
+  bonus_minutes: 0,
   featured: false,
   visible: true,
   sort_order: 0,
@@ -219,6 +220,23 @@ function PackageModal({
               />
             </div>
 
+            {/* Bonus minutes */}
+            <div>
+              <label className={labelCn}>Bonus Minutes</label>
+              <input
+                type="number"
+                min={0}
+                className={inputCn}
+                value={form.bonus_minutes}
+                onChange={(e) => set("bonus_minutes", parseInt(e.target.value) || 0)}
+                onKeyDown={(e) => ["e", "E", "+", "-", "."].includes(e.key) && e.preventDefault()}
+                placeholder="0"
+              />
+              <p className="text-[11px] text-gray-400 mt-1.5">
+                Extra airtime bonus shown on the pricing card. e.g. 5 = &quot;+5 min bonus airtime&quot;
+              </p>
+            </div>
+
             {/* Sort order */}
             <div>
               <label className={labelCn}>Sort Order</label>
@@ -400,6 +418,16 @@ function PackageCard({
             <span className="text-[10px] text-gray-400">Total Plays</span>
           </div>
         </div>
+
+        {/* Bonus badge */}
+        {pkg.bonus_minutes > 0 && (
+          <div className="flex items-center gap-2 mb-5 px-3 py-2 rounded-xl bg-[#FFD400]/15 border border-[#FFD400]/40">
+            <Star size={12} className="text-[#D9A000] flex-shrink-0" fill="currentColor" />
+            <span className="text-[11px] font-bold text-[#B8860B]">
+              +{pkg.bonus_minutes} min bonus airtime included
+            </span>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="grid grid-cols-2 gap-2">
@@ -638,6 +666,7 @@ export default function PackagesPage() {
                   duration: editTarget.duration,
                   advertisement_length: editTarget.advertisement_length,
                   displays_per_day: editTarget.displays_per_day,
+                  bonus_minutes: editTarget.bonus_minutes,
                   featured: editTarget.featured,
                   visible: editTarget.visible,
                   sort_order: editTarget.sort_order,

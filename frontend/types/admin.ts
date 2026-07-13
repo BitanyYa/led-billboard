@@ -156,6 +156,7 @@ export interface Package {
   duration: string;
   advertisement_length: number;  // seconds
   displays_per_day: number;
+  bonus_minutes: number;         // extra airtime bonus (0 = no bonus)
   featured: boolean;
   visible: boolean;
   sort_order: number;

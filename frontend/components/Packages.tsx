@@ -53,6 +53,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 47036,
       advertisement_length: adLen,
       displays_per_day: plays,
+      bonus_minutes: 0,
       description: getSetting(settings, "pkg_1week_tagline", "Try it out"),
       featured: false,
       visible: true,
@@ -64,6 +65,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 108460,
       advertisement_length: adLen,
       displays_per_day: plays,
+      bonus_minutes: 0,
       description: getSetting(settings, "pkg_1month_tagline", "Most popular for starters"),
       featured: false,
       visible: true,
@@ -75,6 +77,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 291500,
       advertisement_length: adLen,
       displays_per_day: plays,
+      bonus_minutes: 5,
       description: getSetting(settings, "pkg_3months_tagline", "Build your brand presence"),
       featured: true,
       visible: true,
@@ -86,6 +89,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 379500,
       advertisement_length: adLen,
       displays_per_day: plays,
+      bonus_minutes: 10,
       description: getSetting(settings, "pkg_6months_tagline", "Serious brand exposure"),
       featured: false,
       visible: true,
@@ -97,6 +101,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 726000,
       advertisement_length: adLen,
       displays_per_day: plays,
+      bonus_minutes: 15,
       description: getSetting(settings, "pkg_1year_tagline", "Dominate your market"),
       featured: false,
       visible: true,
@@ -239,7 +244,9 @@ export default function Packages({ settings, packages }: Props) {
                         `${pkg.advertisement_length}-second advertisement`,
                         `${pkg.displays_per_day} plays per day`,
                         `${plays} total displays`,
-                        ...(pkg.description ? [] : []),
+                        ...(pkg.bonus_minutes > 0
+                          ? [`+${pkg.bonus_minutes} min bonus airtime`]
+                          : []),
                       ].map((f) => (
                         <li key={f} className="flex items-start gap-2.5">
                           <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${isPopular ? "bg-[#FFD400]/25" : "bg-[#0057D9]/10"}`}>
@@ -279,7 +286,7 @@ export default function Packages({ settings, packages }: Props) {
           className="text-center text-gray-400 text-sm mt-12 font-light"
         >
           All prices are before {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
-          Contact us at <span className="text-[#FFD400] font-medium">{contactPhone}</span> for more details.
+          Contact us at <span className="text-[#000000] font-medium">{contactPhone}</span> for more details.
         </motion.p>
       </div>
     </section>
