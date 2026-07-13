@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { SettingsMap } from "@/types/admin";
+import type { SettingsMap, Package } from "@/types/admin";
 
 /**
  * Server-side (or client-side) settings fetch.
@@ -29,6 +29,33 @@ export async function fetchSettings(): Promise<SettingsMap> {
 }
 
 /**
+ * Fetch all visible packages from Supabase, ordered by sort_order.
+ * Uses the anon key — packages table has public-read RLS for visible rows.
+ * Returns an empty array on failure so the homepage renders gracefully.
+ */
+export async function fetchPackages(): Promise<Package[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabase = createClient<any>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+
+  const { data, error } = await supabase
+    .from("packages")
+    .select("*")
+    .eq("visible", true)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+
+  if (error || !data) {
+    console.warn("[packages] Failed to fetch packages:", error?.message);
+    return [];
+  }
+
+  return data as Package[];
+}
+
+/**
  * Convenience helper — get a single setting value with a fallback.
  */
 export function getSetting(settings: SettingsMap, key: string, fallback = ""): string {
@@ -44,16 +71,18 @@ export const DEFAULT_SETTINGS: SettingsMap = {
   company_name:        "AWLO Advertising",
   company_tagline:     "Ethiopia's premier LED billboard advertising company",
   company_description: "We help businesses reach thousands of potential customers every day with stunning digital displays at Awlo Business Center.",
+  logo_url:            "",
 
   // Contact
-  phone:    "+251 959 15 55 55",
-  whatsapp: "+251959155555",
-  telegram: "+251959155555",
-  email:    "awloadvertising@gmail.com",
-  address:  "Awlo Business Center, Bole, Addis Ababa",
-  maps_url: "https://www.google.com/maps/place/Awlo+Business+center/@9.02497,38.74689,17z",
-  maps_embed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.4522739821397!2d38.74689!3d9.02497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa2de1724cdb233da!2sAwlo%20Business%20center!5e0!3m2!1sen!2set!4v1720000000000",
-  website:  "https://www.awloadvertising.com",
+  phone:           "+251 959 15 55 55",
+  phone_secondary: "",
+  whatsapp:        "+251959155555",
+  telegram:        "+251959155555",
+  email:           "awloadvertising@gmail.com",
+  address:         "Awlo Business Center, Bole, Addis Ababa",
+  maps_url:        "https://www.google.com/maps/place/Awlo+Business+center/@9.02497,38.74689,17z",
+  maps_embed:      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.4522739821397!2d38.74689!3d9.02497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa2de1724cdb233da!2sAwlo%20Business%20center!5e0!3m2!1sen!2set!4v1720000000000",
+  website:         "https://www.awloadvertising.com",
 
   // Hours
   hours_weekday:  "Mon - Fri: 8:00 AM - 6:00 PM",
@@ -65,11 +94,13 @@ export const DEFAULT_SETTINGS: SettingsMap = {
   twitter:   "#",
   instagram: "#",
   linkedin:  "#",
+  tiktok:    "",
+  youtube:   "",
 
   // Hero
+  hero_video_url:    "",
   hero_headline:     "Make Your Brand Impossible to Ignore",
   hero_subheadline:  "Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.",
-  hero_badge_text:   "Premium Digital Billboard Advertising",
   hero_stat1_value:  "40x",
   hero_stat1_label:  "Daily Displays",
   hero_stat2_value:  "10×7m",

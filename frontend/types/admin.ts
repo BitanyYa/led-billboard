@@ -57,7 +57,7 @@ export interface ContactMessage {
   admin_notes: string | null;
 }
 
-export type ContactStatus = "new" | "read" | "replied";
+export type ContactStatus = "new" | "read" | "replied" | "archived";
 
 // ─────────────────────────────────────────────
 //  Settings row
@@ -136,11 +136,61 @@ export const QUOTE_STATUS_CONFIG: Record<QuoteStatus, { label: string; color: st
   rejected:         { label: "Rejected",             color: "#DC2626", bg: "#FEF2F2", icon: "❌" },
 };
 
-export const CONTACT_STATUS_CONFIG: Record<ContactStatus, { label: string; color: string; bg: string }> = {
-  new:     { label: "New",     color: "#0057D9", bg: "#EFF6FF" },
-  read:    { label: "Read",    color: "#7C3AED", bg: "#F5F3FF" },
-  replied: { label: "Replied", color: "#059669", bg: "#ECFDF5" },
+export const CONTACT_STATUS_CONFIG: Record<ContactStatus, { label: string; color: string; bg: string; icon: string }> = {
+  new:      { label: "New",      color: "#0057D9", bg: "#EFF6FF", icon: "🔵" },
+  read:     { label: "Read",     color: "#7C3AED", bg: "#F5F3FF", icon: "👁️" },
+  replied:  { label: "Replied",  color: "#059669", bg: "#ECFDF5", icon: "✅" },
+  archived: { label: "Archived", color: "#6B7280", bg: "#F9FAFB", icon: "📦" },
 };
+
+// ─────────────────────────────────────────────
+//  Package
+// ─────────────────────────────────────────────
+export interface Package {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  description: string | null;
+  price: number;
+  duration: string;
+  advertisement_length: number;  // seconds
+  displays_per_day: number;
+  featured: boolean;
+  visible: boolean;
+  sort_order: number;
+}
+
+export type PackageFormData = Omit<Package, "id" | "created_at" | "updated_at">;
+
+// ─────────────────────────────────────────────
+//  Gallery
+// ─────────────────────────────────────────────
+export interface GalleryItem {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  category: string;
+  file_url: string;
+  storage_path: string;
+  file_type: "image" | "video";
+  file_name: string;
+  file_size: number | null;
+  visible: boolean;
+  sort_order: number;
+}
+
+export type GalleryItemFormData = Pick<GalleryItem, "title" | "category" | "visible" | "sort_order">;
+
+export const GALLERY_CATEGORIES = [
+  "General",
+  "Night View",
+  "Day View",
+  "Events",
+  "Campaigns",
+  "Behind the Scenes",
+] as const;
 
 // ─────────────────────────────────────────────
 //  Internal Notes (shared by quotes + campaigns)
