@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Upload, X, FileVideo, Image as ImageIcon, Info } from "lucide-react";
-import { step3Schema, type Step3Data, ACCEPTED_MIME_TYPES, MAX_FILE_SIZE_BYTES } from "@/types/quote";
+import { step3Schema, type Step3Data, ACCEPTED_MIME_TYPES } from "@/types/quote";
 import StepWrapper from "@/components/quote/shared/StepWrapper";
 import FormField from "@/components/quote/shared/FormField";
 
@@ -137,6 +137,7 @@ export default function Step3Upload({ defaultValues, onNext, onBack, direction }
                       className="relative rounded-2xl border-2 border-[#0057D9] bg-[#0057D9]/5 overflow-hidden"
                     >
                       {isImage && preview ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={preview} alt="Ad preview" className="w-full h-52 object-contain bg-gray-50" />
                       ) : isVideo ? (
                         <div className="flex flex-col items-center justify-center py-10 gap-3">

@@ -1,6 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { fetchGalleryItems } from "@/lib/gallery";
 import GalleryClient from "@/components/GalleryClient";
+import type { GalleryItem } from "@/types/admin";
 
 /**
  * Server component — fetches visible gallery items on every request.
@@ -11,7 +12,7 @@ import GalleryClient from "@/components/GalleryClient";
 export default async function Gallery() {
   noStore(); // never serve a stale cached version
 
-  let items = [];
+  let items: GalleryItem[] = [];
   try {
     items = await fetchGalleryItems();
   } catch {

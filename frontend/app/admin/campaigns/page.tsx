@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Search, Filter, Megaphone, ArrowRight,
-  ArrowUp, ArrowDown, ChevronLeft, ChevronRight, Plus,
+  ArrowUp, ArrowDown, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import { SkeletonRow } from "@/components/admin/Skeleton";

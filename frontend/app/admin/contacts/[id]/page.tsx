@@ -7,7 +7,7 @@ import {
   ArrowLeft, Mail, Phone, User, Clock,
   CheckCircle, AlertCircle, MessageSquare,
   Eye, MailCheck, Archive, Trash2, Building2,
-  Globe, Shield, RotateCcw,
+  Shield, RotateCcw,
 } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import LoadingSpinner from "@/components/admin/LoadingSpinner";

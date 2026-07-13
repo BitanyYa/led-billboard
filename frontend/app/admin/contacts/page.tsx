@@ -101,7 +101,7 @@ function RowMenu({ items }: { items: DropdownItem[] }) {
       document.removeEventListener("mousedown", onMouseDown);
       document.removeEventListener("scroll", onScroll, true);
     };
-  }, [open]);
+  }, [open, items]);
 
   const menu = (
     <div

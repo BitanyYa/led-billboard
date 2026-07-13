@@ -2,13 +2,14 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const slides = [
   {
     id: "slide-1",
     content: (
       <div className="flex flex-col items-center text-center w-full px-4">
-        <img src="/logo.png" alt="AWLO Advert" className="h-12 sm:h-16 md:h-20 w-auto mb-3 sm:mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
+        <Image src="/logo.png" alt="AWLO Advert" width={80} height={64} className="h-12 sm:h-16 md:h-20 w-auto mb-3 sm:mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
         <h3 className="text-white font-heading font-bold text-lg sm:text-xl md:text-3xl drop-shadow-md">
           PREMIER DIGITAL DISPLAY
         </h3>

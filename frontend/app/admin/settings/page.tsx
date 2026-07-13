@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import {
   Save, CheckCircle, AlertCircle, Upload, X,
-  Building2, Phone, Clock, Share2, MapPin, Mail,
+  Building2, Phone, Clock, Share2, MapPin,
   Globe, Image as ImageIcon, Video, MonitorPlay,
 } from "lucide-react";
 import LoadingSpinner from "@/components/admin/LoadingSpinner";
@@ -159,6 +159,7 @@ function LogoUploader({
       <div className="flex items-center gap-4">
         <div className="w-24 h-16 rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex items-center justify-center overflow-hidden flex-shrink-0">
           {logoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={logoUrl}
               alt="Logo preview"

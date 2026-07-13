@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eye, EyeOff, LogIn, AlertCircle } from "lucide-react";
+import Image from "next/image";
 import { getAdminClient } from "@/lib/supabase-admin";
 
 export default function AdminLoginPage() {
@@ -49,7 +50,7 @@ export default function AdminLoginPage() {
 
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img src="/logo.png" alt="AWLO Advert" className="h-16 w-auto" />
+            <Image src="/logo.png" alt="AWLO Advert" width={120} height={64} className="h-16 w-auto" />
           </div>
 
           <h1 className="font-heading font-bold text-2xl text-white text-center mb-1">

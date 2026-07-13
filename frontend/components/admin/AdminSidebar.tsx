@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   LayoutDashboard, MessageSquare, FileText,
   Settings, LogOut, X, Megaphone, Package, Images,
@@ -56,7 +57,7 @@ export default function AdminSidebar({ open, onClose }: Props) {
         {/* Logo */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
           <div className="flex items-center gap-2.5">
-            <img src="/logo.png" alt="AWLO" className="h-9 w-auto" />
+            <Image src="/logo.png" alt="AWLO" width={36} height={36} className="h-9 w-auto" />
             <div>
               <div className="text-white font-heading font-bold text-sm leading-none">AWLO</div>
               <div className="text-white/40 text-[10px] font-medium tracking-widest uppercase mt-0.5">Admin</div>

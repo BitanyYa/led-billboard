@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import NextImage from "next/image";
 import { Video, Image as ImageIcon } from "lucide-react";
 import type { GalleryItem } from "@/types/admin";
 
@@ -49,11 +50,12 @@ function GalleryCard({
             </div>
           </>
         ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <NextImage
             src={item.file_url}
             alt={item.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         )}
 
@@ -105,7 +107,7 @@ export default function GalleryClient({ items }: Props) {
         {items.length > 0 ? (
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {items.map((item, i) => (
-              <GalleryCard key={item.id} item={item} index={i} inView={inView} />
+              <GalleryCard key={String(item.id)} item={item} index={i} inView={inView} />
             ))}
           </div>
         ) : (

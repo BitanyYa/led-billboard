@@ -38,7 +38,7 @@ const AVATAR_COLORS = [
 function avatarColor(author: string): [string, string] {
   let hash = 0;
   for (let i = 0; i < author.length; i++) hash = author.charCodeAt(i) + ((hash << 5) - hash);
-  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length] as [string, string];
 }
 
 function Avatar({ author }: { author: string }) {

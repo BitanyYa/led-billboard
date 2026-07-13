@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -46,9 +47,11 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
             >
-              <img
+              <Image
                 src="/logo.png"
                 alt="AWLO Advert"
+                width={120}
+                height={56}
                 className="h-14 w-auto drop-shadow-sm filter brightness-100 group-hover:brightness-105 transition-all duration-300"
               />
             </motion.div>

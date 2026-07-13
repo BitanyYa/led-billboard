@@ -235,7 +235,7 @@ export default function CampaignDetailPage() {
 
       /* auto-load signed URL for ad file */
       if (c.ad_file_url) {
-        await loadSignedUrl(c.ad_file_url, c.ad_file_name);
+        await loadSignedUrl(c.ad_file_url);
       }
       setLoading(false);
     }
@@ -244,7 +244,7 @@ export default function CampaignDetailPage() {
   }, [id, router]);
 
   /* ── resolve signed URL from Supabase Storage ── */
-  async function loadSignedUrl(rawUrl: string, fileName: string | null) {
+  async function loadSignedUrl(rawUrl: string) {
     setAdLoading(true);
     try {
       const parts = new URL(rawUrl).pathname.split("/advertisements/");
@@ -339,7 +339,7 @@ export default function CampaignDetailPage() {
 
   const refreshAdUrl = async () => {
     if (!campaign?.ad_file_url) return;
-    await loadSignedUrl(campaign.ad_file_url, campaign.ad_file_name);
+    await loadSignedUrl(campaign.ad_file_url);
   };
 
   if (loading) return <LoadingSpinner />;
@@ -349,7 +349,6 @@ export default function CampaignDetailPage() {
   const isVideo = /\.(mp4|mov|webm)$/i.test(campaign.ad_file_name ?? "");
   const remaining = daysLeft(endDate || campaign.end_date);
   const statusCfg  = CAMPAIGN_STATUS_CONFIG[campaignStatus];
-  const paymentCfg = PAYMENT_STATUS_CONFIG[paymentStatus];
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-10">
@@ -649,6 +648,7 @@ export default function CampaignDetailPage() {
                   ) : adUrl && isImage ? (
                     <motion.div key="image" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
                       className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={adUrl} alt={campaign.ad_file_name ?? "Advertisement"}
                         className="w-full max-h-96 object-contain" />
                     </motion.div>
