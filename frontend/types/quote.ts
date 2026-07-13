@@ -60,7 +60,7 @@ export type Step2Data = z.infer<typeof step2Schema>;
 //  STEP 3 — Advertisement Upload
 // ─────────────────────────────────────────────
 export const ACCEPTED_MIME_TYPES = ["video/mp4", "image/jpeg", "image/jpg", "image/png"];
-export const MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024; // 100 MB
+export const MAX_FILE_SIZE_BYTES = 500 * 1024 * 1024; // 500 MB
 
 export const step3Schema = z
   .object({
@@ -88,7 +88,7 @@ export const step3Schema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["adFile"],
-          message: "File size must be under 100 MB",
+          message: "File size must be under 500 MB",
         });
       }
     }

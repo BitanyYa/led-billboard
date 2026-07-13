@@ -124,7 +124,7 @@ export default function Step3Upload({ defaultValues, onNext, onBack, direction }
                 label="Advertisement File"
                 required
                 error={(errors as { adFile?: { message?: string } }).adFile?.message}
-                hint="Accepted: MP4, JPG, JPEG, PNG — Max 100 MB"
+                hint="Accepted: MP4, JPG, JPEG, PNG — Max 500 MB"
               >
                 <AnimatePresence mode="wait">
                   {adFile ? (
@@ -200,7 +200,7 @@ export default function Step3Upload({ defaultValues, onNext, onBack, direction }
                         <div className="text-sm font-semibold text-gray-700">
                           {isDragging ? "Drop your file here" : "Drag & drop or click to upload"}
                         </div>
-                        <div className="text-xs text-gray-400 mt-1">MP4, JPG, JPEG, PNG up to 100 MB</div>
+                        <div className="text-xs text-gray-400 mt-1">MP4, JPG, JPEG, PNG up to 500 MB</div>
                       </div>
                     </motion.label>
                   )}
