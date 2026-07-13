@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import ProgressBar from "@/components/quote/shared/ProgressBar";
 import Step1Contact from "@/components/quote/steps/Step1Contact";
@@ -124,7 +125,7 @@ function RequestQuoteContent() {
           className="mb-10 text-center"
         >
           <Link href="/">
-            <img src="/logo.png" alt="AWLO Advert" className="h-16 w-auto mx-auto mb-5 drop-shadow-sm" />
+            <Image src="/logo.png" alt="AWLO Advert" width={120} height={64} className="h-16 w-auto mx-auto mb-5 drop-shadow-sm" />
           </Link>
           <h1 className="font-heading font-bold text-3xl sm:text-4xl text-gray-900 mb-2">
             Request a Quote

@@ -21,7 +21,7 @@ const steps = [
     icon: Package,
     title: "Choose a Package",
     description:
-      "Select a package that fits your campaign timeline and budget â€” from weekly to annual plans.",
+      "Select a package that fits your campaign timeline and budget from weekly to annual plans.",
     accent: "#FFD400",
     glow: "shadow-[#FFD400]/20",
   },

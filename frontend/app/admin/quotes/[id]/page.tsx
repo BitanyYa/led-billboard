@@ -495,6 +495,7 @@ export default function QuoteDetailPage() {
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
                         className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-900">
                         {isImage ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img src={previewUrl} alt="Ad preview" className="w-full max-h-80 object-contain bg-gray-100" />
                         ) : isVideo ? (
                           <video controls className="w-full max-h-80 bg-black" src={previewUrl} />
