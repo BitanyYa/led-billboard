@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   LayoutDashboard, MessageSquare, FileText,
   Settings, LogOut, X, Megaphone, Package, Images,
 } from "lucide-react";
-import { getAdminClient } from "@/lib/supabase-admin";
+import { createBrowserClient } from "@supabase/ssr";
 
 const NAV_ITEMS = [
   { href: "/admin",            label: "Dashboard",  icon: LayoutDashboard },
@@ -26,12 +26,14 @@ interface Props {
 
 export default function AdminSidebar({ open, onClose }: Props) {
   const pathname = usePathname();
-  const router   = useRouter();
 
   const handleSignOut = async () => {
-    const supabase = getAdminClient();
+    const supabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     await supabase.auth.signOut();
-    router.push("/admin/login");
+    window.location.href = "/admin/login";
   };
 
   const isActive = (href: string) =>

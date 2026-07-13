@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminTopbar from "@/components/admin/AdminTopbar";
-import { getAdminClient } from "@/lib/supabase-admin";
+import { createBrowserClient } from "@supabase/ssr";
 
 const PAGE_TITLES: Record<string, string> = {
   "/admin":            "Dashboard",
@@ -27,7 +27,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (isLogin) { setChecked(true); return; }
 
-    const supabase = getAdminClient();
+    const supabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
         setAuthed(true);

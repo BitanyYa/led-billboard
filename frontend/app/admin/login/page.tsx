@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Eye, EyeOff, LogIn, AlertCircle } from "lucide-react";
 import Image from "next/image";
-import { getAdminClient } from "@/lib/supabase-admin";
+import { createBrowserClient } from "@supabase/ssr";
 
 export default function AdminLoginPage() {
   const [email,    setEmail]    = useState("");
@@ -19,7 +19,13 @@ export default function AdminLoginPage() {
     setError("");
     setLoading(true);
 
-    const supabase = getAdminClient();
+    // Use @supabase/ssr browser client so the session is written to cookies
+    // that the middleware (which also uses @supabase/ssr) can read.
+    const supabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+
     const { error: authError } = await supabase.auth.signInWithPassword({
       email:    email.trim().toLowerCase(),
       password,
@@ -35,8 +41,8 @@ export default function AdminLoginPage() {
       return;
     }
 
-    // Hard redirect — bypasses Next.js router, lets the browser
-    // set cookies properly before the middleware reads them
+    // Hard redirect — lets the browser commit cookies before the middleware
+    // runs its session check on the next request.
     window.location.href = "/admin";
   };
 
