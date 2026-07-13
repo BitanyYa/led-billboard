@@ -90,18 +90,18 @@ export default function Contact({ settings }: Props) {
       <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-[#0057D9]/6 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-[#FFD400]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-16 xl:mb-20"
         >
           <span className="inline-block bg-[#0057D9]/10 text-[#0057D9] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#0057D9]/15">
             Contact Us
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 mb-5 tracking-tight">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-5 tracking-tight">
             Let&apos;s Make Your Brand <span className="text-[#0057D9]">Shine</span>
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed font-light">
@@ -109,7 +109,7 @@ export default function Contact({ settings }: Props) {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-start">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

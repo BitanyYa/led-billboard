@@ -55,19 +55,19 @@ export default function HowItWorks() {
       <div className="absolute top-1/4 left-0 w-[450px] h-[450px] bg-[#0057D9]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#FFD400]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-20 xl:mb-28"
         >
           <span className="inline-block bg-[#0057D9]/10 text-[#0057D9] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#0057D9]/10 shadow-sm">
             How It Works
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 mb-6 tracking-tight">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6 tracking-tight">
             Get Started in <span className="text-[#0057D9]">4 Simple Steps</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed font-light">
@@ -81,7 +81,7 @@ export default function HowItWorks() {
           {/* Connecting line (desktop) */}
           <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-200/80 to-transparent z-0" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12 relative z-10">
             {steps.map((step, i) => {
               const Icon = step.icon;
               return (

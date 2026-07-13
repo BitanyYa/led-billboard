@@ -99,19 +99,19 @@ export default function WhyUs() {
       <div className="absolute top-1/4 right-0 w-[450px] h-[450px] bg-[#0057D9]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#FFD400]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-20 xl:mb-28"
         >
           <span className="inline-block bg-[#FFD400]/10 text-[#D9A000] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#FFD400]/20 shadow-sm">
             Why Advertise With Us
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 mb-6 tracking-tight">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6 tracking-tight">
             Unmatched Outdoor{" "}
             <span className="text-[#0057D9]">Advertising</span> Power
           </h2>
@@ -126,7 +126,7 @@ export default function WhyUs() {
           variants={container}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10"
         >
           {benefits.map((benefit) => {
             const Icon = benefit.icon;

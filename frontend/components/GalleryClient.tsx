@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import NextImage from "next/image";
-import { Video, Image as ImageIcon } from "lucide-react";
+import { Video } from "lucide-react";
 import type { GalleryItem } from "@/types/admin";
 
 interface Props {
@@ -59,13 +59,7 @@ function GalleryCard({
           />
         )}
 
-        {/* Category pill */}
-        <div className="absolute bottom-2 left-2">
-          <span className="inline-flex items-center gap-1 bg-[#0057D9]/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
-            {item.file_type === "image" ? <ImageIcon size={9} /> : <Video size={9} />}
-            {item.category}
-          </span>
-        </div>
+
       </div>
 
       {/* Text */}
@@ -84,8 +78,8 @@ export default function GalleryClient({ items }: Props) {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="gallery" className="relative py-20 lg:py-28 bg-[#F4F7FB] overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="relative py-20 lg:py-28 xl:py-36 bg-[#F4F7FB] overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
 
         {/* Header */}
         <motion.div
@@ -93,26 +87,26 @@ export default function GalleryClient({ items }: Props) {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-16 xl:mb-20"
         >
           <div className="text-[#0057D9] font-bold text-sm tracking-[0.2em] uppercase mb-3">
             IMPACT GALLERY
           </div>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 tracking-tight">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 tracking-tight">
             See Our <span className="text-[#0057D9]">Billboards</span> in Action
           </h2>
         </motion.div>
 
         {/* Grid */}
         {items.length > 0 ? (
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
             {items.map((item, i) => (
               <GalleryCard key={String(item.id)} item={item} index={i} inView={inView} />
             ))}
           </div>
         ) : (
           // Fallback shown only if DB is empty and no items have been uploaded yet
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
             {[
               { id: "f1", title: "Night Vibe",         category: "Night View", file_url: "/night-vibe.png",         file_type: "image" as const },
               { id: "f2", title: "Day Light View",      category: "Day View",   file_url: "/daylight-view.png",      file_type: "image" as const },

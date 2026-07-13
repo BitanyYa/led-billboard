@@ -29,7 +29,7 @@ insert into public.settings (key, value, label, group_name) values
 
   -- ── Billboard specs ───────────────────────────────────────
   ('billboard_screen_size',   '10m × 7m',     'Screen Size',         'billboard'),
-  ('billboard_resolution',    '3600 × 720',   'Resolution',          'billboard'),
+  ('billboard_resolution',    '4K Resolution',   'Resolution',          'billboard'),
   ('billboard_ad_duration',   '20 Seconds',   'Ad Duration',         'billboard'),
   ('billboard_daily_plays',   '40 Times',     'Daily Plays',         'billboard'),
   ('billboard_brightness',    '5000+ Nits',   'Brightness',          'billboard'),

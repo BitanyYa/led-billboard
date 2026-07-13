@@ -29,7 +29,7 @@ export default function Billboard({ settings }: Props) {
 
   const specs = [
     { icon: Maximize2, label: "Screen Size",     value: getSetting(settings, "billboard_screen_size",  "10m × 7m"),    detail: "Total display area",                accent: "#0057D9" },
-    { icon: Zap,       label: "Resolution",      value: getSetting(settings, "billboard_resolution",   "3600 × 720"),  detail: "Crystal-clear pixel density",       accent: "#FFD400" },
+    { icon: Zap,       label: "Resolution",      value: getSetting(settings, "billboard_resolution",   "4K Resolution"),  detail: "Crystal-clear pixel density",       accent: "#FFD400" },
     { icon: Clock,     label: "Ad Duration",     value: getSetting(settings, "billboard_ad_duration",  "20 Seconds"),  detail: "Per advertisement slot",            accent: "#0057D9" },
     { icon: BarChart2, label: "Daily Plays",     value: getSetting(settings, "billboard_daily_plays",  "40 Times"),    detail: "Per advertisement per day",         accent: "#FFD400" },
     { icon: Lightbulb, label: "Brightness",      value: getSetting(settings, "billboard_brightness",   "5000+ Nits"), detail: "Vivid in all lighting conditions",  accent: "#0057D9" },
@@ -43,18 +43,18 @@ export default function Billboard({ settings }: Props) {
       <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-[#0057D9]/5 rounded-full blur-[110px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-[450px] h-[450px] bg-[#FFD400]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-20 xl:mb-28"
         >
           <span className="inline-block bg-[#0057D9]/10 text-[#0057D9] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#0057D9]/10 shadow-sm">
             The Billboard
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 mb-6 tracking-tight">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6 tracking-tight">
             Technical <span className="text-[#0057D9]">Specifications</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed font-light">
@@ -63,7 +63,7 @@ export default function Billboard({ settings }: Props) {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
           {/* Billboard illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
@@ -75,7 +75,7 @@ export default function Billboard({ settings }: Props) {
             <motion.div
               whileHover={{ scale: 1.02, rotateY: 3 }}
               transition={{ duration: 0.4 }}
-              className="relative w-full max-w-xs sm:max-w-sm cursor-pointer"
+              className="w-full max-w-xs sm:max-w-sm xl:max-w-md cursor-pointer"
             >
               <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-gray-700">
                 <div className="m-3 bg-black rounded-xl overflow-hidden relative" style={{ aspectRatio: "3/4" }}>
@@ -115,7 +115,7 @@ export default function Billboard({ settings }: Props) {
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6"
           >
             {specs.map((spec) => {
               const Icon = spec.icon;

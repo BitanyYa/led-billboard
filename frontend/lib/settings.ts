@@ -116,7 +116,7 @@ export const DEFAULT_SETTINGS: SettingsMap = {
 
   // Billboard specs
   billboard_screen_size:  "10m × 7m",
-  billboard_resolution:   "3600 × 720",
+  billboard_resolution:   "4K Resolution",
   billboard_ad_duration:  "20 Seconds",
   billboard_daily_plays:  "40 Times",
   billboard_brightness:   "5000+ Nits",

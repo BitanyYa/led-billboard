@@ -29,19 +29,19 @@ export default function About({ settings }: Props) {
 
   return (
     <section id="about" className="py-24 lg:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
 
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 xl:mb-20"
         >
           <span className="inline-block bg-[#0057D9]/10 text-[#0057D9] font-semibold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4">
             About AWLO
           </span>
-          <h2 className="font-heading font-bold text-4xl lg:text-5xl text-gray-900 mb-6">
+          <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6">
             {heading.includes("LED") ? (
               <>
                 {heading.split("LED")[0]}
@@ -58,7 +58,7 @@ export default function About({ settings }: Props) {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
           {/* Left: Visual */}
           <motion.div

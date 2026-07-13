@@ -7,7 +7,7 @@ const tickerItems = [
   "⚡ 5000+ Nits Brightness — Visible Day & Night",
   "📍 Prime Location — Addis Ababa''s #1 LED Billboard",
   "📐 10m × 7m Screen — 70 m² of Pure Impact",
-  "🏆 Premium LED Display — 3600 × 720 Resolution",
+  "🏆 Premium LED Display — 4K Resolution",
   "📊 Reach Thousands of Commuters & Shoppers Daily",
   "🚀 Get Started in 4 Simple Steps — Contact Us Today",
 ];
