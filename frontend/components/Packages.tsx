@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -286,7 +286,7 @@ export default function Packages({ settings, packages }: Props) {
           className="text-center text-gray-400 text-sm mt-12 font-light"
         >
           All prices are before {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
-          Contact us at <span className="text-[#000000] font-medium">{contactPhone}</span> for more details.
+          Contact us at <span className="text-[#FFD400] font-medium">{contactPhone}</span> for more details.
         </motion.p>
       </div>
     </section>
