@@ -3,13 +3,13 @@ import { createServerClient } from "@supabase/ssr";
 
 /**
  * Server-side admin route protection.
- * Every request to /admin/* (except /admin/login) is checked for a valid
- * Supabase session. Unauthenticated requests are redirected to /admin/login.
+ * Reads the session from cookies (no network round-trip to Supabase).
+ * Unauthenticated requests to /admin/* are redirected to /admin/login.
  */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow login page through unconditionally
+  // Always allow the login page through
   if (pathname === "/admin/login") return NextResponse.next();
 
   let response = NextResponse.next({ request });
@@ -23,6 +23,7 @@ export async function middleware(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
+          // Write refreshed cookies back to both request and response
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           );
@@ -35,11 +36,11 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Use getSession() — reads from the cookie directly, no Supabase network call.
+  // getUser() requires a network round-trip which can fail/timeout on edge runtimes.
+  const { data: { session } } = await supabase.auth.getSession();
 
-  if (!user) {
+  if (!session) {
     const loginUrl = new URL("/admin/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
