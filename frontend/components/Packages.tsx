@@ -233,7 +233,7 @@ export default function Packages({ settings, packages }: Props) {
                       <div className={`font-heading font-extrabold text-2xl tracking-tight ${isPopular ? "text-[#FFD400]" : "text-[#0057D9]"}`}>
                         {fmtPrice(pkg.price)}
                       </div>
-                      <div className={`text-[10px] mt-1 font-medium ${isPopular ? "text-white/40" : "text-gray-500"}`}>
+                      <div className={`text-[10px] mt-1 font-semibold ${isPopular ? "text-white/85" : "text-gray-800"}`}>
                         {vatNote}
                       </div>
                     </div>
@@ -283,7 +283,7 @@ export default function Packages({ settings, packages }: Props) {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.7 }}
-          className="text-center text-gray-400 text-sm mt-12 font-light"
+          className="text-center text-gray-600 text-sm mt-12 font-normal"
         >
           All prices are before {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
           Contact us at <span className="text-[#FFD400] font-medium">{contactPhone}</span> for more details.
