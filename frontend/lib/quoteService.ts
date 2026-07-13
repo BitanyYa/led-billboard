@@ -73,7 +73,7 @@ function buildPayload(
     special_instructions:     form.step4.specialInstructions || null,
     // Meta
     reference_number:         referenceNumber,
-    status:                   "new",
+    status:                   "pending",
   };
 }
 

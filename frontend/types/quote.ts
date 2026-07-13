@@ -139,7 +139,7 @@ export interface QuoteSubmissionPayload {
   special_instructions:    string | null;
   // Meta
   reference_number:        string;
-  status:                  "new";
+  status:                  "pending";
 }
 
 // ─────────────────────────────────────────────
