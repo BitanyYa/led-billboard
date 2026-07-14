@@ -194,7 +194,8 @@ export default function ContactsPage() {
       r.name.toLowerCase().includes(q) ||
       r.email.toLowerCase().includes(q) ||
       (r.phone ?? "").toLowerCase().includes(q) ||
-      r.subject.toLowerCase().includes(q)
+      r.subject.toLowerCase().includes(q) ||
+      r.id.toLowerCase().includes(q)
     );
   });
 
@@ -309,6 +310,7 @@ export default function ContactsPage() {
           <table className="w-full table-fixed">
             <thead>
               <tr className="border-b border-gray-100 text-left bg-gray-50/60">
+                <th className="px-4 py-3.5 text-xs font-bold text-gray-400 uppercase tracking-wider w-24">ID</th>
                 <th className="px-4 py-3.5 text-xs font-bold text-gray-400 uppercase tracking-wider w-28">Name</th>
                 <th className="px-4 py-3.5 text-xs font-bold text-gray-400 uppercase tracking-wider w-44">Email</th>
                 <th className="px-4 py-3.5 text-xs font-bold text-gray-400 uppercase tracking-wider w-28">Phone</th>
@@ -326,6 +328,13 @@ export default function ContactsPage() {
                     r.status === "new" ? "bg-blue-50/20" : ""
                   }`}
                 >
+                  {/* ID */}
+                  <td className="px-4 py-4">
+                    <code className="text-[10px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded font-mono">
+                      {r.id.split('-')[0]}
+                    </code>
+                  </td>
+
                   {/* Name */}
                   <td className="px-4 py-4">
                     <Link href={`/admin/contacts/${r.id}`} className="block">

@@ -268,7 +268,12 @@ export default function ContactDetailPage() {
                 <h1 className="font-heading font-bold text-xl text-gray-900">{msg.name}</h1>
                 <StatusBadge status={status} type="contact" />
               </div>
-              <p className="text-gray-500 text-sm font-medium">{msg.subject}</p>
+              <div className="flex flex-wrap items-center gap-3">
+                <code className="text-xs bg-gray-100 text-gray-600 font-mono font-bold px-2 py-1 rounded-md">
+                  {msg.id.split('-')[0]}
+                </code>
+                <p className="text-gray-500 text-sm font-medium">{msg.subject}</p>
+              </div>
             </div>
             <div className="text-xs text-gray-400 flex items-center gap-1.5 flex-shrink-0">
               <Clock size={13} />
