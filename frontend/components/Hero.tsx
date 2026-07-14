@@ -63,7 +63,7 @@ export default function Hero({ settings }: Props) {
                     key={i}
                     className={
                       isHighlight
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block"
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-2 pr-1"
                         : ""
                     }
                   >
