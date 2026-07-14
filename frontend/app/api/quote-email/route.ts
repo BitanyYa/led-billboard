@@ -13,8 +13,9 @@ export async function POST(req: NextRequest) {
     await sendQuoteNotificationEmail(payload);
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    console.error("Failed to send quote notification email:", err.message);
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
+    console.error("Failed to send quote notification email:", errorMessage);
+    return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
   }
 }
