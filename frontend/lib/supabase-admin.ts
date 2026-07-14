@@ -1,25 +1,17 @@
-import { createClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
 
 /**
  * Browser-side Supabase client for admin pages.
- * Uses the anon key — relies on Supabase Auth session for RLS.
- * The user must be authenticated for protected queries to work.
+ * Uses @supabase/ssr so it automatically reads auth session from cookies
+ * (which are set by the login page).
  *
  * Results are cast to our own types (types/admin.ts) at each call site,
  * so we intentionally omit the Database generic here.
  */
 export function createAdminClient() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return createClient<any>(
+  return createBrowserClient<any>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        storageKey: "awlo-admin-auth",
-      },
-    }
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 }
 
