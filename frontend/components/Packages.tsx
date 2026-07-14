@@ -53,7 +53,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 47036,
       advertisement_length: adLen,
       displays_per_day: plays,
-      bonus_minutes: 0,
+      bonus_days: 0,
       description: getSetting(settings, "pkg_1week_tagline", "Try it out"),
       featured: false,
       visible: true,
@@ -65,7 +65,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 108460,
       advertisement_length: adLen,
       displays_per_day: plays,
-      bonus_minutes: 0,
+      bonus_days: 0,
       description: getSetting(settings, "pkg_1month_tagline", "Most popular for starters"),
       featured: false,
       visible: true,
@@ -77,7 +77,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 291500,
       advertisement_length: adLen,
       displays_per_day: plays,
-      bonus_minutes: 5,
+      bonus_days: 5,
       description: getSetting(settings, "pkg_3months_tagline", "Build your brand presence"),
       featured: true,
       visible: true,
@@ -89,7 +89,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 379500,
       advertisement_length: adLen,
       displays_per_day: plays,
-      bonus_minutes: 10,
+      bonus_days: 10,
       description: getSetting(settings, "pkg_6months_tagline", "Serious brand exposure"),
       featured: false,
       visible: true,
@@ -101,7 +101,7 @@ function buildFallback(settings: SettingsMap): DbPackage[] {
       price: 726000,
       advertisement_length: adLen,
       displays_per_day: plays,
-      bonus_minutes: 15,
+      bonus_days: 15,
       description: getSetting(settings, "pkg_1year_tagline", "Dominate your market"),
       featured: false,
       visible: true,
@@ -244,8 +244,8 @@ export default function Packages({ settings, packages }: Props) {
                         `${pkg.advertisement_length}-second advertisement`,
                         `${pkg.displays_per_day} plays per day`,
                         `${plays} total displays`,
-                        ...(pkg.bonus_minutes > 0
-                          ? [`+${pkg.bonus_minutes} min bonus airtime`]
+                        ...(pkg.bonus_days > 0
+                          ? [`+${pkg.bonus_days} days bonus airtime`]
                           : []),
                       ].map((f) => (
                         <li key={f} className="flex items-start gap-2.5">
