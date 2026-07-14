@@ -176,7 +176,7 @@ export default function Footer({ settings }: Props) {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 text-sm text-white/40 font-light">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>© {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
+            <div>ï¿½ {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Privacy Policy</a>
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Terms of Service</a>
