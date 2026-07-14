@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Globe, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
@@ -40,7 +40,7 @@ export default function Footer({ settings }: Props) {
     <footer className="relative bg-gradient-to-b from-[#060E1E] to-[#01050F] text-white border-t border-white/5 overflow-hidden">
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[200px] bg-[#0057D9]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-20 xl:py-28">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-20 xl:py-28">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 xl:gap-16 mb-16">
 
           {/* Company Info */}
@@ -176,7 +176,7 @@ export default function Footer({ settings }: Props) {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 text-sm text-white/40 font-light">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>© {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
+            <div>� {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Privacy Policy</a>
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Terms of Service</a>

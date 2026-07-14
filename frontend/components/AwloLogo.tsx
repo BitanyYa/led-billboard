@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 interface AwloLogoProps {
   size?: "sm" | "md" | "lg" | "xl";
@@ -22,9 +22,9 @@ export default function AwloLogo({
   const w = variant === "white";
 
   /*
-   * ViewBox: 200 Ã— 178
+   * ViewBox: 200 × 178
    * Triangle vertices: top = (100, 6), bottom-left = (8, 168), bottom-right = (192, 168)
-   * Text row sits at y â‰ˆ 130, ADVERT at y â‰ˆ 157
+   * Text row sits at y ≈ 130, ADVERT at y ≈ 157
    */
   return (
     <svg
@@ -36,7 +36,7 @@ export default function AwloLogo({
       className={className}
       aria-label="AWLO Advert logo"
     >
-      {/* â”€â”€ Outer blue triangle (hollow, thick stroke) â”€â”€ */}
+      {/* ── Outer blue triangle (hollow, thick stroke) ── */}
       <polygon
         points="100,8 190,166 10,166"
         fill="none"
@@ -46,17 +46,17 @@ export default function AwloLogo({
         strokeLinecap="round"
       />
 
-      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-          LETTER ROW  â€“  baseline y = 132
+      {/* ══════════════════════════════════════════
+          LETTER ROW  –  baseline y = 132
           Approximate x positions (viewBox units):
             A  : 28
-            W  : 50  (wide â€“ takes ~30 units)
+            W  : 50  (wide – takes ~30 units)
             /  : 82
             L  : 93
             O  : 111 (circle glyph)
-          â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+          ══════════════════════════════════════════ */}
 
-      {/* â”€â”€ A (gray) â”€â”€ */}
+      {/* ── A (gray) ── */}
       <text
         x="28" y="132"
         fontFamily="Arial Black, Arial, sans-serif"
@@ -66,11 +66,11 @@ export default function AwloLogo({
         textAnchor="middle"
       >A</text>
 
-      {/* â”€â”€ W  â€“  rendered as two mirrored chevrons â”€â”€
+      {/* ── W  –  rendered as two mirrored chevrons ──
           Left chevron: green   Right chevron: red
           We draw them as filled polygons so we get
           clean colour splits without font hacks.
-          W bounding box: x 47â€“83, top y 96, bottom y 134  */}
+          W bounding box: x 47–83, top y 96, bottom y 134  */}
 
       {/* Green left half of W */}
       <polygon
@@ -94,7 +94,7 @@ export default function AwloLogo({
         fill={w ? "white" : "#DC2626"}
       />
 
-      {/* â”€â”€ / (yellow slash) â”€â”€ */}
+      {/* ── / (yellow slash) ── */}
       <text
         x="91" y="132"
         fontFamily="Arial Black, Arial, sans-serif"
@@ -104,7 +104,7 @@ export default function AwloLogo({
         textAnchor="middle"
       >/</text>
 
-      {/* â”€â”€ L (gray) â”€â”€ */}
+      {/* ── L (gray) ── */}
       <text
         x="107" y="132"
         fontFamily="Arial Black, Arial, sans-serif"
@@ -114,7 +114,7 @@ export default function AwloLogo({
         textAnchor="middle"
       >L</text>
 
-      {/* â”€â”€ O with play-button â”€â”€
+      {/* ── O with play-button ──
           Draw a gray "O" ring, then overlay a blue circle with
           a white play triangle inside (matching the logo exactly) */}
 
@@ -136,7 +136,7 @@ export default function AwloLogo({
         fill="white"
       />
 
-      {/* â”€â”€ ADVERT text â”€â”€ */}
+      {/* ── ADVERT text ── */}
       <text
         x="100" y="158"
         fontFamily="Arial Black, Arial, sans-serif"

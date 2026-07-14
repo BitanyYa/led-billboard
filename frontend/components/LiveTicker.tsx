@@ -1,15 +1,15 @@
-ï»¿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
 const tickerItems = [
-  "ðŸ”´ LIVE NOW â€” Your Ad Plays 40Ã— Every Day",
-  "âš¡ 5000+ Nits Brightness â€” Visible Day & Night",
-  "ðŸ“ Prime Location â€” Addis Ababa''s #1 LED Billboard",
-  "ðŸ“ 10m Ã— 7m Screen â€” 70 mÂ² of Pure Impact",
-  "ðŸ† Premium LED Display â€” 4K Resolution",
-  "ðŸ“Š Reach Thousands of Commuters & Shoppers Daily",
-  "ðŸš€ Get Started in 4 Simple Steps â€” Contact Us Today",
+  "?? LIVE NOW — Your Ad Plays 40× Every Day",
+  "? 5000+ Nits Brightness — Visible Day & Night",
+  "?? Prime Location — Addis Ababa''s #1 LED Billboard",
+  "?? 10m × 7m Screen — 70 m² of Pure Impact",
+  "?? Premium LED Display — 4K Resolution",
+  "?? Reach Thousands of Commuters & Shoppers Daily",
+  "?? Get Started in 4 Simple Steps — Contact Us Today",
 ];
 
 export default function LiveTicker() {
@@ -54,7 +54,7 @@ export default function LiveTicker() {
             {doubled.map((item, i) => (
               <span key={i} className="inline-flex items-center text-white/90 text-xs font-medium tracking-wide px-8">
                 {item}
-                <span className="ml-8 text-[#FFD400]/50">â€¢</span>
+                <span className="ml-8 text-[#FFD400]/50">•</span>
               </span>
             ))}
           </div>
@@ -62,7 +62,7 @@ export default function LiveTicker() {
 
         <div className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-[#003DA0] border-l border-[#0047C4]">
           <span className="text-white/50 text-[10px] uppercase tracking-widest font-semibold">ADD. TIME</span>
-          <span className="text-[#FFD400] font-mono font-bold text-xs tabular-nums">{currentTime || "â€”:â€”:â€”"}</span>
+          <span className="text-[#FFD400] font-mono font-bold text-xs tabular-nums">{currentTime || "—:—:—"}</span>
         </div>
       </div>
     </div>

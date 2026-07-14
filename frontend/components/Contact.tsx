@@ -1,4 +1,4 @@
-ï»¿"use client";
+"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -90,7 +90,7 @@ export default function Contact({ settings }: Props) {
       <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-[#0057D9]/6 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-[#FFD400]/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
@@ -261,7 +261,7 @@ export default function Contact({ settings }: Props) {
                   </div>
                   <div className="relative">
                     <MessageSquare size={15} className="absolute left-3.5 top-3.5 text-gray-400 pointer-events-none" />
-                    <textarea {...register("message")} id="message" rows={5} placeholder="Tell us about your advertising needsâ€¦" className={`${inputCn(!!errors.message)} pl-10 resize-none`} />
+                    <textarea {...register("message")} id="message" rows={5} placeholder="Tell us about your advertising needs…" className={`${inputCn(!!errors.message)} pl-10 resize-none`} />
                   </div>
                   {errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message.message}</p>}
                 </div>
@@ -273,7 +273,7 @@ export default function Contact({ settings }: Props) {
                   className="w-full inline-flex items-center justify-center gap-2 bg-[#0057D9] hover:bg-[#003DA0] disabled:bg-[#0057D9]/60 disabled:cursor-not-allowed text-white font-bold text-sm px-8 py-4 rounded-full transition-colors shadow-lg shadow-[#0057D9]/25"
                 >
                   {isBusy ? (
-                    <><svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/></svg>Sendingâ€¦</>
+                    <><svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/></svg>Sending…</>
                   ) : (
                     <>Send Message<Send size={16} /></>
                   )}

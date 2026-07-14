@@ -43,7 +43,7 @@ export default function Hero({ settings }: Props) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 pb-16 xl:pt-32 xl:pb-24">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 pb-16 xl:pt-32 xl:pb-24">
         <div className="flex flex-col lg:flex-row items-center gap-16 xl:gap-24">
 
           {/* Text Side */}
@@ -53,7 +53,7 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.15] mb-6 pb-4"
+              className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-white leading-[1.15] mb-6 pb-4"
             >
               {headline.split(' ').map((word, i) => {
                 const lowerWord = word.toLowerCase();
@@ -78,7 +78,7 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/70 text-lg sm:text-xl xl:text-2xl leading-relaxed mb-10 max-w-xl xl:max-w-2xl mx-auto lg:mx-0"
+              className="text-white/70 text-lg sm:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed mb-10 max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0"
             >
               {subheadline}
             </motion.p>
@@ -127,7 +127,7 @@ export default function Hero({ settings }: Props) {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="flex-1 w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg mx-auto"
+            className="flex-1 w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-2xl mx-auto"
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-[#0057D9]/30 rounded-3xl blur-2xl" />
