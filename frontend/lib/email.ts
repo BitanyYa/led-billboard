@@ -289,3 +289,124 @@ export async function sendNotificationEmail(
 </html>`,
   });
 }
+
+import type { QuoteSubmissionPayload } from "@/types/quote";
+
+// ─────────────────────────────────────────────
+//  Notification email → AWLO team (Quote Request)
+// ─────────────────────────────────────────────
+export async function sendQuoteNotificationEmail(
+  payload: QuoteSubmissionPayload
+): Promise<void> {
+  const submittedAt = new Date().toLocaleString("en-ET", {
+    timeZone: "Africa/Addis_Ababa",
+    dateStyle: "full",
+    timeStyle: "short",
+  });
+
+  await resend.emails.send({
+    from: FROM_ADDRESS,
+    to:   AWLO_EMAIL,
+    replyTo: payload.email,
+    subject: `📋 New Quote Request: ${payload.package} — ${payload.full_name}`,
+    html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" /></head>
+<body style="margin:0;padding:0;background:#0A1628;font-family:Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0"
+          style="background:#0D1F3C;border-radius:20px;overflow:hidden;
+                 border:1px solid rgba(255,255,255,0.08);">
+          <tr>
+            <td style="background:#FFD400;padding:28px 36px;">
+              <p style="margin:0;font-size:11px;color:rgba(0,0,0,0.6);
+                          letter-spacing:2px;text-transform:uppercase;font-weight:700;">
+                New Quote Request
+              </p>
+              <h2 style="margin:6px 0 0;color:#111827;font-size:22px;font-weight:800;">
+                Reference: ${payload.reference_number}
+              </h2>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px 36px;">
+              <table width="100%" cellpadding="0" cellspacing="0"
+                style="background:rgba(255,255,255,0.04);border-radius:12px;
+                        border:1px solid rgba(255,255,255,0.08);margin-bottom:24px;">
+                <tr><td style="padding:20px 24px;">
+                  <p style="margin:0 0 14px;font-size:11px;font-weight:700;
+                              color:#FFD400;text-transform:uppercase;letter-spacing:1px;">
+                    Client Details
+                  </p>
+                  ${[
+                    ["Name",    payload.full_name],
+                    ["Company", payload.company_name || "—"],
+                    ["Email",   `<a href="mailto:${payload.email}" style="color:#60A5FA;">${payload.email}</a>`],
+                    ["Phone",   payload.phone ? `<a href="tel:${payload.phone}" style="color:#60A5FA;">${payload.phone}</a>` : "—"],
+                    ["Pref Contact", payload.preferred_contact_method],
+                    ["Submitted", submittedAt],
+                  ].map(([label, val]) => `
+                    <table width="100%" cellpadding="0" cellspacing="4">
+                      <tr>
+                        <td style="width:100px;font-size:12px;color:#9CA3AF;padding:3px 0;">${label}</td>
+                        <td style="font-size:13px;color:#F9FAFB;font-weight:600;padding:3px 0;">${val}</td>
+                      </tr>
+                    </table>`).join("")}
+                </td></tr>
+              </table>
+
+              <table width="100%" cellpadding="0" cellspacing="0"
+                style="background:rgba(255,255,255,0.04);border-radius:12px;
+                        border:1px solid rgba(255,255,255,0.08);margin-bottom:28px;">
+                <tr><td style="padding:20px 24px;">
+                  <p style="margin:0 0 14px;font-size:11px;font-weight:700;
+                              color:#FFD400;text-transform:uppercase;letter-spacing:1px;">
+                    Campaign Details
+                  </p>
+                  ${[
+                    ["Package", payload.package],
+                    ["Category", payload.business_category],
+                    ["Objective", payload.campaign_objective],
+                    ["Start Date", payload.preferred_start_date || "—"],
+                  ].map(([label, val]) => `
+                    <table width="100%" cellpadding="0" cellspacing="4">
+                      <tr>
+                        <td style="width:100px;font-size:12px;color:#9CA3AF;padding:3px 0;">${label}</td>
+                        <td style="font-size:13px;color:#F9FAFB;font-weight:600;padding:3px 0;">${val}</td>
+                      </tr>
+                    </table>`).join("")}
+                    
+                    ${payload.special_instructions ? `
+                    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08);">
+                      <p style="margin:0 0 4px;font-size:12px;color:#9CA3AF;">Special Instructions:</p>
+                      <p style="margin:0;font-size:13px;color:#D1D5DB;line-height:1.6;">${payload.special_instructions}</p>
+                    </div>` : ""}
+                </td></tr>
+              </table>
+              
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding-right:10px;">
+                    <a href="${SITE_URL}/admin/quotes"
+                      style="display:inline-block;background:#FFD400;color:#111827;
+                              font-size:13px;font-weight:700;padding:10px 20px;
+                              border-radius:50px;text-decoration:none;">
+                      View in Dashboard
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+  });
+}
+

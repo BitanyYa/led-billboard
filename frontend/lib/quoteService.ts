@@ -113,6 +113,15 @@ export async function submitQuoteRequest(
       throw new Error(error.message);
     }
 
+    // 4. Send email notification asynchronously
+    fetch("/api/quote-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(err => {
+      console.error("Failed to trigger quote email:", err);
+    });
+
     return { success: true, referenceNumber };
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
