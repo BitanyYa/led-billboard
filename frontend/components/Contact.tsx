@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -41,7 +41,7 @@ export default function Contact({ settings }: Props) {
   const CONTACT_INFO = [
     { label: "Phone",    value: phone,   link: `tel:+${phone.replace(/\D/g,"")}`,  color: "#0057D9", icon: Phone,         external: false },
     { label: "WhatsApp", value: phone,   link: `https://wa.me/${whatsapp}`,        color: "#25D366", icon: MessageCircle, external: true  },
-    { label: "Telegram", value: phone,   link: `https://t.me/+${telegram}`,       color: "#229ED9", icon: MessageCircle, external: true  },
+    { label: "Telegram", value: phone,   link: `https://t.me/${telegram}`,       color: "#229ED9", icon: MessageCircle, external: true  },
     { label: "Email",    value: email,   link: `mailto:${email}`,                  color: "#DC2626", icon: Mail,          external: false },
     { label: "Office",   value: address, link: mapsUrl,                            color: "#7C3AED", icon: MapPin,        external: true  },
   ];
