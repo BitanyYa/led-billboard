@@ -53,7 +53,7 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.05] mb-6"
+              className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.15] mb-6 pb-4"
             >
               {headline.split(' ').map((word, i) => {
                 const lowerWord = word.toLowerCase();
@@ -63,7 +63,7 @@ export default function Hero({ settings }: Props) {
                     key={i}
                     className={
                       isHighlight
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-2 pr-1"
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-3 pt-1 pr-1"
                         : ""
                     }
                   >
