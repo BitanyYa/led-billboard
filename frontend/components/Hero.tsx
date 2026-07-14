@@ -55,7 +55,22 @@ export default function Hero({ settings }: Props) {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.05] mb-6"
             >
-              {headline}
+              {headline.split(' ').map((word, i) => {
+                const lowerWord = word.toLowerCase();
+                const isHighlight = lowerWord.includes('impossible') || lowerWord.includes('ignore');
+                return (
+                  <span
+                    key={i}
+                    className={
+                      isHighlight
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block"
+                        : ""
+                    }
+                  >
+                    {word}{' '}
+                  </span>
+                );
+              })}
             </motion.h1>
 
             {/* Subheadline */}
