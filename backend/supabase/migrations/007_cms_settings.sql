@@ -11,9 +11,9 @@ insert into public.settings (key, value, label, group_name) values
   ('company_description', 'We help businesses reach thousands of potential customers every day with stunning digital displays at Awlo Business Center.', 'Company Description', 'company'),
 
   -- ── Hero section ──────────────────────────────────────────
-  ('hero_headline',       'Make Your Brand Impossible to Ignore',          'Hero Headline',        'hero'),
-  ('hero_subheadline',    'Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.', 'Hero Subheadline', 'hero'),
-  ('hero_badge_text',     'Premium Digital Billboard Advertising',         'Hero Badge Text',      'hero'),
+  ('hero_headline',       'Where Business, Shopping, and Advertising Come Together', 'Hero Headline', 'hero'),
+  ('hero_subheadline',    'Located in the heart of Bole Medhanialem, Addis Ababa, AWLO Business Center is a vibrant commercial destination bringing together shopping, beauty, dining, professional services, and premium LED billboard advertising. Whether you''re visiting to explore businesses or looking to promote your brand, AWLO BC offers opportunities that connect businesses with thousands of people every day.', 'Hero Subheadline', 'hero'),
+  ('hero_badge_text',     'AWLO Business Center • Bole Medhanialem',       'Hero Badge Text',      'hero'),
   ('hero_stat1_value',    '40x',                                           'Stat 1 Value',         'hero'),
   ('hero_stat1_label',    'Daily Displays',                                'Stat 1 Label',         'hero'),
   ('hero_stat2_value',    '10×7m',                                         'Stat 2 Value',         'hero'),

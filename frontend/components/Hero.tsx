@@ -9,8 +9,8 @@ import { getSetting } from "@/lib/settings";
 interface Props { settings: SettingsMap; }
 
 export default function Hero({ settings }: Props) {
-  const headline    = getSetting(settings, "hero_headline",    "Make Your Brand Impossible to Ignore");
-  const subheadline = getSetting(settings, "hero_subheadline", "Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.");
+  const headline    = getSetting(settings, "hero_headline",    "Where Business, Shopping, and Advertising Come Together");
+  const subheadline = getSetting(settings, "hero_subheadline", "Located in the heart of Bole Medhanialem, Addis Ababa, AWLO Business Center is a vibrant commercial destination bringing together shopping, beauty, dining, professional services, and premium LED billboard advertising. Whether you're visiting to explore businesses or looking to promote your brand, AWLO BC offers opportunities that connect businesses with thousands of people every day.");
   const videoUrl    = getSetting(settings, "hero_video_url",   "") || "/billboard-video.mp4";
   const stat1v      = getSetting(settings, "hero_stat1_value", "40x");
   const stat1l      = getSetting(settings, "hero_stat1_label", "Daily Displays");
@@ -48,22 +48,33 @@ export default function Hero({ settings }: Props) {
 
           {/* Text Side */}
           <div className="flex-1 text-center lg:text-left">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm mb-6 backdrop-blur-md"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
+              AWLO Business Center • Bole Medhanialem, Addis Ababa
+            </motion.div>
+
             {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-white leading-[1.15] mb-6 pb-4"
+              className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-white leading-[1.15] mb-6 pb-2"
             >
               {headline.split(' ').map((word, i) => {
-                const lowerWord = word.toLowerCase();
-                const isHighlight = lowerWord.includes('impossible') || lowerWord.includes('ignore');
+                const cleanWord = word.toLowerCase().replace(/[^a-z]/g, '');
+                const isHighlight = cleanWord === 'shopping' || cleanWord === 'advertising' || cleanWord === 'together';
                 return (
                   <span
                     key={i}
                     className={
                       isHighlight
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-3 pt-1 pr-1"
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-1 pt-1 pr-1"
                         : ""
                     }
                   >
@@ -78,7 +89,7 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/70 text-lg sm:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed mb-10 max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0"
+              className="text-white/70 text-base sm:text-lg xl:text-xl 2xl:text-2xl leading-relaxed mb-10 max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0"
             >
               {subheadline}
             </motion.p>
@@ -90,20 +101,19 @@ export default function Hero({ settings }: Props) {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
             >
-              <Link
-                href="/request-quote"
+              <a
+                href="#about"
                 className="group inline-flex items-center gap-2 bg-[#0057D9] hover:bg-[#003DA0] text-white font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,87,217,0.4)] hover:shadow-[0_12px_40px_rgba(0,87,217,0.6)] hover:-translate-y-1"
               >
-                Get a Quote
+                Explore AWLO Business Center
                 <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <a
-                href="#contact"
+              </a>
+              <Link
+                href="/request-quote"
                 className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10"
               >
-                <Phone size={18} />
-                Contact Us
-              </a>
+                Advertise with AWLO Advert
+              </Link>
             </motion.div>
 
             {/* Stats */}

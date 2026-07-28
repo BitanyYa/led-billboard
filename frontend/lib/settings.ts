@@ -99,8 +99,8 @@ export const DEFAULT_SETTINGS: SettingsMap = {
 
   // Hero
   hero_video_url:    "",
-  hero_headline:     "Make Your Brand Impossible to Ignore",
-  hero_subheadline:  "Reach thousands of potential customers every day through premium LED billboard advertising. Your message, bigger and brighter than ever.",
+  hero_headline:     "Where Business, Shopping, and Advertising Come Together",
+  hero_subheadline:  "Located in the heart of Bole Medhanialem, Addis Ababa, AWLO Business Center is a vibrant commercial destination bringing together shopping, beauty, dining, professional services, and premium LED billboard advertising. Whether you're visiting to explore businesses or looking to promote your brand, AWLO BC offers opportunities that connect businesses with thousands of people every day.",
   hero_stat1_value:  "40x",
   hero_stat1_label:  "Daily Displays",
   hero_stat2_value:  "10×7m",
