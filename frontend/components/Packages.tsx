@@ -189,13 +189,13 @@ export default function Packages({ settings, packages }: Props) {
                 <motion.div
                   whileHover={{
                     y: -8,
-                    scale: isPopular ? 1.06 : 1.02,
+                    scale: isPopular ? 1.04 : 1.02,
                     boxShadow: isPopular
                       ? "0 25px 60px -15px rgba(0,87,217,0.4)"
-                      : "0 20px 40px -15px rgba(0,0,0,0.06)",
+                      : "0 20px 40px -15px rgba(0,0,0,0.10)",
                   }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  className={`relative flex flex-col rounded-3xl overflow-hidden h-full border transition-all duration-300 z-10 cursor-pointer ${
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className={`relative flex flex-col rounded-3xl overflow-hidden h-full border z-10 cursor-pointer transition-[border-color] duration-300 ${
                     isPopular
                       ? "bg-gradient-to-b from-[#0057D9] to-[#003DA0] border-transparent scale-105"
                       : "bg-[#F0F5FF]/70 backdrop-blur-xl border-white/40 hover:border-[#0057D9]/40"

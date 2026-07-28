@@ -102,7 +102,7 @@ export default function Step5Review({ formData, onBack, onSubmit, isSubmitting, 
 
         {/* Campaign Details */}
         <ReviewSection icon={Briefcase} title="Campaign Details" onEdit={onBack} color="#7C3AED">
-          <ReviewRow label="Package"      value={`${packageLabel} — ${packagePrice} (excl. VAT)`} />
+          <ReviewRow label="Package"      value={`${packageLabel}:  ${packagePrice} (excl. VAT)`} />
           <ReviewRow label="Category"     value={step2.businessCategory} />
           <ReviewRow label="Objective"    value={step2.campaignObjective} />
         </ReviewSection>

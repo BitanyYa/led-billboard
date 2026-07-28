@@ -106,7 +106,7 @@ export async function submitQuoteRequest(
         error.message.includes("does not exist")
       ) {
         console.warn(
-          "quote_requests table not found — using mock success. Run the SQL migration to persist data."
+          "quote_requests table not found using mock success. Run the SQL migration to persist data."
         );
         return { success: true, referenceNumber };
       }

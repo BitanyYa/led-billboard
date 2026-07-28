@@ -82,7 +82,7 @@ export default function SuccessPage({ referenceNumber }: Props) {
           </h3>
           <div className="space-y-3">
             {[
-              { step: "1", text: "Our team reviews your campaign request within 24 hours." },
+              { step: "1", text: "Our team reviews your campaign request within a few minutes." },
               { step: "2", text: "We contact you to confirm pricing, scheduling, and payment." },
               { step: "3", text: "Once confirmed, your ad goes live on our LED billboard." },
             ].map((item) => (

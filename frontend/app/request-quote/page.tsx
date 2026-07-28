@@ -131,7 +131,7 @@ function RequestQuoteContent() {
             Request a Quote
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
-            Complete the form below and our team will get back to you within 24 hours.
+            Complete the form below and our team will get back to you within a few minutes.
           </p>
         </motion.div>
 
@@ -189,6 +189,7 @@ function RequestQuoteContent() {
                   direction={direction}
                 />
               )}
+
             </div>
           </AnimatePresence>
         </div>

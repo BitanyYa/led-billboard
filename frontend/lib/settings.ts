@@ -3,7 +3,7 @@ import type { SettingsMap, Package } from "@/types/admin";
 
 /**
  * Server-side (or client-side) settings fetch.
- * Uses the anon key — settings table has public-read RLS policy.
+ * Uses the anon key settings table has public-read RLS policy.
  * Returns a flat key → value map with typed fallback defaults.
  */
 export async function fetchSettings(): Promise<SettingsMap> {
@@ -30,7 +30,7 @@ export async function fetchSettings(): Promise<SettingsMap> {
 
 /**
  * Fetch all visible packages from Supabase, ordered by sort_order.
- * Uses the anon key — packages table has public-read RLS for visible rows.
+ * Uses the anon key: packages table has public-read RLS for visible rows.
  * Returns an empty array on failure so the homepage renders gracefully.
  */
 export async function fetchPackages(): Promise<Package[]> {
@@ -56,14 +56,14 @@ export async function fetchPackages(): Promise<Package[]> {
 }
 
 /**
- * Convenience helper — get a single setting value with a fallback.
+ * Convenience helper: get a single setting value with a fallback.
  */
 export function getSetting(settings: SettingsMap, key: string, fallback = ""): string {
   return settings[key] ?? fallback;
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  Default values — used when DB fetch fails or key is missing.
+//  Default values used when DB fetch fails or key is missing.
 //  Mirrors exactly what migration 007 seeds.
 // ─────────────────────────────────────────────────────────────────
 export const DEFAULT_SETTINGS: SettingsMap = {
@@ -100,7 +100,7 @@ export const DEFAULT_SETTINGS: SettingsMap = {
   // Hero
   hero_video_url:    "",
   hero_headline:     "Where Business, Shopping, and Advertising Come Together",
-  hero_subheadline:  "Bole Medhanialem's premier commercial destination — shopping, dining, professional services, and Ethiopia's top LED billboard advertising, all in one place.",
+  hero_subheadline:  "Bole Medhanialem's premier commercial destination shopping, dining, professional services, and Ethiopia's top LED billboard advertising, all in one place.",
   hero_stat1_value:  "40x",
   hero_stat1_label:  "Daily Displays",
   hero_stat2_value:  "10×7m",

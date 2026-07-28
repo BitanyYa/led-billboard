@@ -72,7 +72,7 @@ export default function ProgressBar({ steps, currentStep }: ProgressBarProps) {
                 )}
               </motion.div>
 
-              {/* Label — hidden on small screens for space */}
+              {/* Label hidden on small screens for space */}
               <div className="hidden sm:flex flex-col items-center">
                 <span
                   className={`text-xs font-semibold transition-colors duration-300 ${

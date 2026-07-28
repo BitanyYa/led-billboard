@@ -14,7 +14,7 @@ export async function sendConfirmationEmail(data: ContactFormData): Promise<void
   await resend.emails.send({
     from: FROM_ADDRESS,
     to:   data.email,
-    subject: `We received your message — AWLO Advertising`,
+    subject: `We received your message: AWLO Advertising`,
     html: `
 <!DOCTYPE html>
 <html>
@@ -176,7 +176,7 @@ export async function sendNotificationEmail(
     from: FROM_ADDRESS,
     to:   AWLO_EMAIL,
     replyTo: data.email,
-    subject: `📩 New Contact: ${data.subject} — from ${data.name}`,
+    subject: `📩 New Contact: ${data.subject} from ${data.name}`,
     html: `
 <!DOCTYPE html>
 <html>
@@ -308,7 +308,7 @@ export async function sendQuoteNotificationEmail(
     from: FROM_ADDRESS,
     to:   AWLO_EMAIL,
     replyTo: payload.email,
-    subject: `📋 New Quote Request: ${payload.package} — ${payload.full_name}`,
+    subject: `📋 New Quote Request: ${payload.package}  ${payload.full_name}`,
     html: `
 <!DOCTYPE html>
 <html>
