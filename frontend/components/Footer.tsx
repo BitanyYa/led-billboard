@@ -6,12 +6,11 @@ import type { SettingsMap } from "@/types/admin";
 import { getSetting } from "@/lib/settings";
 
 const quickLinks = [
-  { label: "Home",      href: "#home"      },
-  { label: "About",     href: "#about"     },
-  { label: "Billboard", href: "#billboard" },
-  { label: "Packages",  href: "#packages"  },
-  { label: "Gallery",   href: "#gallery"   },
-  { label: "Contact",   href: "#contact"   },
+  { label: "Home",        href: "#home"      },
+  { label: "About",       href: "#about"     },
+  { label: "AWLO Advert", href: "#packages"  },
+  { label: "Gallery",     href: "#gallery"   },
+  { label: "Contact",     href: "#contact"   },
 ];
 
 interface Props {
@@ -24,8 +23,7 @@ export default function Footer({ settings }: Props) {
   const address  = getSetting(settings, "address",  "Awlo Business Center, Bole, Addis Ababa");
   const mapsUrl  = getSetting(settings, "maps_url", "#");
   const website  = getSetting(settings, "website",  "#");
-  const desc     = getSetting(settings, "company_description",
-    "Ethiopia's premier LED billboard advertising company. We help businesses reach thousands of potential customers every day with stunning digital displays.");
+  const phoneE164 = phone.replace(/\D/g, "");
 
   const socialLinks = [
     { icon: Facebook, href: getSetting(settings, "facebook",  "#"), label: "Facebook"  },
@@ -33,8 +31,6 @@ export default function Footer({ settings }: Props) {
     { icon: Instagram,href: getSetting(settings, "instagram", "#"), label: "Instagram" },
     { icon: Linkedin, href: getSetting(settings, "linkedin",  "#"), label: "LinkedIn"  },
   ];
-
-  const phoneE164 = phone.replace(/\D/g, "");
 
   return (
     <footer className="relative bg-gradient-to-b from-[#060E1E] to-[#01050F] text-white border-t border-white/5 overflow-hidden">
@@ -49,13 +45,16 @@ export default function Footer({ settings }: Props) {
               <motion.img
                 whileHover={{ scale: 1.03 }}
                 src="/logo.png"
-                alt="AWLO Advert"
+                alt="AWLO Business Center"
                 className="h-20 w-auto filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.05)]"
               />
             </div>
 
+            <h3 className="font-heading font-bold text-white text-base mb-3">
+              About AWLO Business Center
+            </h3>
             <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-md font-light">
-              {desc}
+              AWLO Business Center is a vibrant commercial hub located in Bole Medhanialem, Addis Ababa, bringing together businesses, shopping, dining, beauty, professional services, and premium LED billboard advertising.
             </p>
 
             <div className="space-y-3.5">
@@ -176,7 +175,7 @@ export default function Footer({ settings }: Props) {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 text-sm text-white/40 font-light">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>© {new Date().getFullYear()} AWLO ADVERT. All rights reserved.</div>
+            <div>© {new Date().getFullYear()} AWLO Business Center. All rights reserved.</div>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Privacy Policy</a>
               <a href="#" className="hover:text-white/70 transition-colors duration-200">Terms of Service</a>

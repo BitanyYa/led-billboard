@@ -214,7 +214,7 @@ export default function Contact({ settings }: Props) {
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1.5">Full Name <span className="text-[#0057D9]">*</span></label>
                     <div className="relative">
                       <User size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                      <input {...register("name")} id="name" type="text" placeholder="Abebe Kebede" autoComplete="name" className={`${inputCn(!!errors.name)} pl-10`} />
+                      <input {...register("name")} id="name" type="text" placeholder="Your Name " autoComplete="name" className={`${inputCn(!!errors.name)} pl-10`} />
                     </div>
                     {errors.name && <p className="text-red-500 text-xs mt-1 font-medium">{errors.name.message}</p>}
                   </div>
@@ -261,7 +261,7 @@ export default function Contact({ settings }: Props) {
                   </div>
                   <div className="relative">
                     <MessageSquare size={15} className="absolute left-3.5 top-3.5 text-gray-400 pointer-events-none" />
-                    <textarea {...register("message")} id="message" rows={5} placeholder="Tell us about your advertising needs�" className={`${inputCn(!!errors.message)} pl-10 resize-none`} />
+                    <textarea {...register("message")} id="message" rows={5} placeholder="Tell us about your advertising needs." className={`${inputCn(!!errors.message)} pl-10 resize-none`} />
                   </div>
                   {errors.message && <p className="text-red-500 text-xs mt-1 font-medium">{errors.message.message}</p>}
                 </div>

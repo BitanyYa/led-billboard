@@ -147,14 +147,14 @@ export default function Packages({ settings, packages }: Props) {
           className="text-center mb-20 xl:mb-28"
         >
           <span className="inline-block bg-[#FFD400]/10 text-[#D9A000] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#FFD400]/20 shadow-sm">
-            Pricing Packages
+            Advertising Packages
           </span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6 tracking-tight">
-            Flexible Plans for <span className="text-[#0057D9]">Every Business</span>
+            AWLO Advert -{" "}
+            <span className="text-[#0057D9]">Premium LED Billboard Advertising</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed font-light">
-            Choose the advertising package that fits your campaign goals and budget.
-            Every plan includes your {adDuration} playing {playsPerDay}.
+            A service by AWLO Business Center. Whether you&apos;re launching a product, promoting an event, or growing brand awareness AWLO Advert delivers outstanding visibility to thousands of daily visitors.
           </p>
         </motion.div>
 

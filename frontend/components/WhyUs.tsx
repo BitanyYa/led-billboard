@@ -4,65 +4,59 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
-  Eye,
-  Monitor,
   MapPin,
-  Repeat,
-  Sun,
-  BadgeDollarSign,
+  Users,
+  TrendingUp,
+  Building2,
+  Tv2,
+  Handshake,
 } from "lucide-react";
 
 const benefits = [
   {
-    icon: Eye,
-    title: "High Visibility",
-    description:
-      "Our billboard stands in a high-traffic location, ensuring thousands of eyes see your brand every single day.",
-    color: "text-[#0057D9]",
-    bg: "bg-[#0057D9]/10",
-    accent: "shadow-[#0057D9]/10",
-  },
-  {
-    icon: Monitor,
-    title: "Premium LED Display",
-    description:
-      "A stunning 10m by 7m LED screen with vibrant colors and sharp resolution that makes every ad pop.",
-    color: "text-[#D9A000]",
-    bg: "bg-[#FFD400]/15",
-    accent: "shadow-[#FFD400]/10",
-  },
-  {
     icon: MapPin,
-    title: "Strategic Location",
-    description:
-      "Positioned at a prime intersection for maximum reach to commuters, shoppers, and pedestrians.",
+    title: "Prime Location",
+    description: "In the heart of Bole Medhanialem, one of Addis Ababa's busiest commercial districts.",
     color: "text-[#0057D9]",
     bg: "bg-[#0057D9]/10",
     accent: "shadow-[#0057D9]/10",
   },
   {
-    icon: Repeat,
-    title: "40 Displays Daily",
-    description:
-      "Your 20-second advertisement runs 40 times every day, keeping your brand top-of-mind for potential customers.",
+    icon: Users,
+    title: "High Daily Foot Traffic",
+    description: "A destination visited daily by shoppers, professionals, and businesses.",
     color: "text-[#D9A000]",
     bg: "bg-[#FFD400]/15",
     accent: "shadow-[#FFD400]/10",
   },
   {
-    icon: Sun,
-    title: "Day & Night Visibility",
-    description:
-      "Our LED display is fully visible in bright daylight and even more stunning after dark 24/7 exposure.",
+    icon: TrendingUp,
+    title: "Business Growth Opportunities",
+    description: "A thriving environment where businesses gain visibility and connect with customers.",
     color: "text-[#0057D9]",
     bg: "bg-[#0057D9]/10",
     accent: "shadow-[#0057D9]/10",
   },
   {
-    icon: BadgeDollarSign,
-    title: "Affordable Packages",
-    description:
-      "Flexible packages designed for every business size and budget, from weekly campaigns to annual placements.",
+    icon: Building2,
+    title: "Modern Commercial Environment",
+    description: "Clean, accessible, and welcoming spaces designed for both visitors and businesses.",
+    color: "text-[#D9A000]",
+    bg: "bg-[#FFD400]/15",
+    accent: "shadow-[#FFD400]/10",
+  },
+  {
+    icon: Tv2,
+    title: "Premium LED Advertising",
+    description: "Reach a larger audience through AWLO Advert's high-resolution LED billboard.",
+    color: "text-[#0057D9]",
+    bg: "bg-[#0057D9]/10",
+    accent: "shadow-[#0057D9]/10",
+  },
+  {
+    icon: Handshake,
+    title: "Trusted Business Community",
+    description: "Join a growing community of businesses operating within AWLO Business Center.",
     color: "text-[#D9A000]",
     bg: "bg-[#FFD400]/15",
     accent: "shadow-[#FFD400]/10",
@@ -109,16 +103,11 @@ export default function WhyUs() {
           className="text-center mb-20 xl:mb-28"
         >
           <span className="inline-block bg-[#FFD400]/10 text-[#D9A000] font-bold text-sm tracking-widest uppercase px-4 py-2 rounded-full mb-4 border border-[#FFD400]/20 shadow-sm">
-            Why Advertise With Us
+            Why Choose Us
           </span>
           <h2 className="font-heading font-bold text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-6 tracking-tight">
-            Unmatched Outdoor{" "}
-            <span className="text-[#0057D9]">Advertising</span> Power
+            Why Choose <span className="text-[#0057D9]">AWLO Business Center</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed font-light">
-            AWLO Advertising delivers the reach, impact, and flexibility that modern
-            businesses need to grow their presence in the real world.
-          </p>
         </motion.div>
 
         {/* Cards grid */}
