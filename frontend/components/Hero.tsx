@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Megaphone, ShoppingBag, Utensils, Briefcase, Tv2 } from "lucide-react";
 import Link from "next/link";
 import type { SettingsMap } from "@/types/admin";
 import { getSetting } from "@/lib/settings";
@@ -9,15 +9,13 @@ import { getSetting } from "@/lib/settings";
 interface Props { settings: SettingsMap; }
 
 export default function Hero({ settings }: Props) {
-  const headline    = getSetting(settings, "hero_headline",    "Where Business, Shopping, and Advertising Come Together");
-  const subheadline = getSetting(settings, "hero_subheadline", "Located in the heart of Bole Medhanialem, Addis Ababa, AWLO Business Center is a vibrant commercial destination bringing together shopping, beauty, dining, professional services, and premium LED billboard advertising. Whether you're visiting to explore businesses or looking to promote your brand, AWLO BC offers opportunities that connect businesses with thousands of people every day.");
-  const videoUrl    = getSetting(settings, "hero_video_url",   "") || "/billboard-video.mp4";
-  const stat1v      = getSetting(settings, "hero_stat1_value", "40x");
-  const stat1l      = getSetting(settings, "hero_stat1_label", "Daily Displays");
-  const stat2v      = getSetting(settings, "hero_stat2_value", "10×7m");
-  const stat2l      = getSetting(settings, "hero_stat2_label", "Screen Size");
-  const stat3v      = getSetting(settings, "hero_stat3_value", "24/7");
-  const stat3l      = getSetting(settings, "hero_stat3_label", "Visibility");
+  const videoUrl = getSetting(settings, "hero_video_url", "") || "/billboard-video.mp4";
+  const stat1v   = getSetting(settings, "hero_stat1_value", "40x");
+  const stat1l   = getSetting(settings, "hero_stat1_label", "Daily Displays");
+  const stat2v   = getSetting(settings, "hero_stat2_value", "10×7m");
+  const stat2l   = getSetting(settings, "hero_stat2_label", "Screen Size");
+  const stat3v   = getSetting(settings, "hero_stat3_value", "24/7");
+  const stat3l   = getSetting(settings, "hero_stat3_label", "Visibility");
 
   const stats = [
     { value: stat1v, label: stat1l },
@@ -26,7 +24,7 @@ export default function Hero({ settings }: Props) {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#020B1A] via-[#030F24] to-[#061630]" />
@@ -42,21 +40,34 @@ export default function Hero({ settings }: Props) {
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 pb-16 xl:pt-32 xl:pb-24">
-        <div className="flex flex-col lg:flex-row items-center gap-16 xl:gap-24">
+      {/* Content — same container as Navbar */}
+      <div className="relative z-10 w-full max-w-7xl 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-28 pb-16 xl:pt-36 xl:pb-24">
+        <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
 
-          {/* Text Side */}
-          <div className="flex-1 text-center lg:text-left">
-            {/* Badge */}
+          {/* ── Left: Text ── */}
+          <div className="flex-1 min-w-0">
+
+            {/* Category pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm mb-6 backdrop-blur-md"
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="flex flex-wrap gap-2 mb-7"
             >
-              <span className="w-2 h-2 rounded-full bg-[#FFD400] animate-pulse" />
-              AWLO Business Center • Bole Medhanialem, Addis Ababa
+              {[
+                { icon: ShoppingBag, label: "Shopping"  },
+                { icon: Utensils,    label: "Dining"    },
+                { icon: Briefcase,   label: "Services"  },
+                { icon: Tv2,         label: "Billboard" },
+              ].map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium backdrop-blur-md"
+                >
+                  <Icon size={12} className="text-[#FFD400]" />
+                  {label}
+                </span>
+              ))}
             </motion.div>
 
             {/* Headline */}
@@ -64,82 +75,95 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-white leading-[1.15] mb-6 pb-2"
+              className="font-heading font-bold text-6xl sm:text-7xl lg:text-7xl xl:text-8xl text-white leading-[1.0] mb-6"
             >
-              {headline.split(' ').map((word, i) => {
-                const cleanWord = word.toLowerCase().replace(/[^a-z]/g, '');
-                const isHighlight = cleanWord === 'shopping' || cleanWord === 'advertising' || cleanWord === 'together';
-                return (
-                  <span
-                    key={i}
-                    className={
-                      isHighlight
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00] filter drop-shadow-[0_0_15px_rgba(255,212,0,0.3)] inline-block pb-1 pt-1 pr-1"
-                        : ""
-                    }
-                  >
-                    {word}{' '}
-                  </span>
-                );
-              })}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00]">
+                AWLO
+              </span>
+              <br />
+              Business
+              <br />
+              Center
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/70 text-base sm:text-lg xl:text-xl 2xl:text-2xl leading-relaxed mb-10 max-w-xl xl:max-w-2xl 2xl:max-w-4xl mx-auto lg:mx-0"
+              transition={{ duration: 0.7, delay: 0.18 }}
+              className="text-white/60 text-base sm:text-lg leading-relaxed mb-10 max-w-md"
             >
-              {subheadline}
+              Addis Ababa&apos;s Premium commercial hub shopping, dining,
+              services, and billboard advertising in one place.
             </motion.p>
 
             {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+              transition={{ duration: 0.7, delay: 0.26 }}
+              className="flex flex-wrap gap-4"
             >
-              <a
+              <motion.a
                 href="#about"
-                className="group inline-flex items-center gap-2 bg-[#0057D9] hover:bg-[#003DA0] text-white font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,87,217,0.4)] hover:shadow-[0_12px_40px_rgba(0,87,217,0.6)] hover:-translate-y-1"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="inline-flex items-center gap-2 bg-[#0057D9] hover:bg-[#003DA0] text-white font-semibold text-base px-8 py-4 rounded-full shadow-[0_8px_30px_rgba(0,87,217,0.45)] hover:shadow-[0_14px_40px_rgba(0,87,217,0.65)] transition-colors duration-300"
               >
-                Explore AWLO Business Center
-                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-              <Link
-                href="/request-quote"
-                className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/10"
+                Explore
+                <motion.span
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight size={18} />
+                </motion.span>
+              </motion.a>
+
+              <motion.div
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
               >
-                Advertise with AWLO Advert
-              </Link>
+                <Link
+                  href="/request-quote"
+                  className="group inline-flex items-center gap-2 border border-white/30 hover:border-[#FFD400]/60 text-white hover:text-[#FFD400] font-medium text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-[#FFD400]/5"
+                >
+                  <Megaphone size={17} className="transition-transform duration-300 group-hover:rotate-12" />
+                  Advertise
+                </Link>
+              </motion.div>
             </motion.div>
 
             {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-14 flex items-center gap-8 justify-center lg:justify-start flex-wrap"
+              transition={{ duration: 0.7, delay: 0.36 }}
+              className="mt-14 flex items-center gap-10 flex-wrap"
             >
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                >
                   <div className="font-heading font-bold text-3xl text-[#FFD400]">{stat.value}</div>
                   <div className="text-white/50 text-sm mt-1">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
 
-          {/* Billboard Visual */}
+          {/* ── Right: Billboard mockup ── */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="flex-1 w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-2xl mx-auto"
+            className="flex-1 min-w-0 w-full"
           >
-            <div className="relative">
+            <div className="relative max-w-md lg:max-w-none mx-auto">
               <div className="absolute -inset-4 bg-[#0057D9]/30 rounded-3xl blur-2xl" />
               <div className="relative bg-gradient-to-b from-[#0A1628] to-[#0D1F3C] rounded-2xl border border-white/10 shadow-[0_0_60px_rgba(0,87,217,0.3)] overflow-hidden">
                 <div className="p-4">
@@ -181,6 +205,7 @@ export default function Hero({ settings }: Props) {
               </motion.div>
             </div>
           </motion.div>
+
         </div>
       </div>
 
