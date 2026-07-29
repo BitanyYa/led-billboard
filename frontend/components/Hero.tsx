@@ -47,29 +47,6 @@ export default function Hero({ settings }: Props) {
           {/* ── Left: Text ── */}
           <div className="flex-1 min-w-0">
 
-            {/* Category pills */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-              className="flex flex-wrap gap-2 mb-7"
-            >
-              {[
-                { icon: ShoppingBag, label: "Shopping"  },
-                { icon: Utensils,    label: "Dining"    },
-                { icon: Briefcase,   label: "Services"  },
-                { icon: Tv2,         label: "Billboard" },
-              ].map(({ icon: Icon, label }) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium backdrop-blur-md"
-                >
-                  <Icon size={12} className="text-[#FFD400]" />
-                  {label}
-                </span>
-              ))}
-            </motion.div>
-
             {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -91,11 +68,34 @@ export default function Hero({ settings }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18 }}
-              className="text-white/60 text-base sm:text-lg leading-relaxed mb-10 max-w-md"
+              className="text-white/60 text-base sm:text-lg leading-relaxed mb-6 max-w-md"
             >
               Addis Ababa&apos;s Premium commercial hub shopping, dining,
               services, and billboard advertising in one place.
             </motion.p>
+
+            {/* Category pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.24 }}
+              className="flex flex-wrap gap-2 mb-8"
+            >
+              {[
+                { icon: ShoppingBag, label: "Shopping"  },
+                { icon: Utensils,    label: "Dining"    },
+                { icon: Briefcase,   label: "Services"  },
+                { icon: Tv2,         label: "Billboard" },
+              ].map(({ icon: Icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-medium backdrop-blur-md"
+                >
+                  <Icon size={12} className="text-[#FFD400]" />
+                  {label}
+                </span>
+              ))}
+            </motion.div>
 
             {/* CTAs */}
             <motion.div
@@ -192,14 +192,14 @@ export default function Hero({ settings }: Props) {
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 -right-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg"
+                className="absolute -top-4 -left-4 bg-[#FFD400] text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg"
               >
                 LIVE NOW
               </motion.div>
               <motion.div
                 animate={{ y: [5, -5, 5] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-4 -left-4 bg-[#0057D9] text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg border border-white/20"
+                className="absolute -bottom-4 -right-4 bg-[#0057D9] text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg border border-white/20"
               >
                 {stat2v} Screen
               </motion.div>
