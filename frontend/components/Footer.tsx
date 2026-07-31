@@ -141,11 +141,11 @@ export default function Footer({ settings }: Props) {
                 Business Hours
               </div>
               <div className="text-white/60 text-sm space-y-1.5 font-light">
-                <div>{getSetting(settings, "hours_weekday",  "Mon - Fri: 8:00 AM - 6:00 PM")}</div>
-                <div>{getSetting(settings, "hours_saturday", "Sat: 9:00 AM - 4:00 PM")}</div>
-                <div className={getSetting(settings, "hours_sunday", "Closed") === "Closed" ? "text-red-400/70" : ""}>
-                  {getSetting(settings, "hours_sunday", "Closed")}
+                <div className="flex justify-between gap-4">
+                  <span>Mon – Sun</span>
+                  <span className="text-white/80">{getSetting(settings, "hours_daily", "8:00 AM – 9:00 PM")}</span>
                 </div>
+                <div className="text-[11px] text-white/30 mt-1">East Africa Time (EAT · UTC+3)</div>
               </div>
             </div>
 

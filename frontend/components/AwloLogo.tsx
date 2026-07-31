@@ -23,8 +23,8 @@ export default function AwloLogo({
 
   /*
    * ViewBox: 200 × 178
-   * Triangle vertices: top = (100, 6), bottom-left = (8, 168), bottom-right = (192, 168)
-   * Text row sits at y ≈ 130, ADVERT at y ≈ 157
+   * Outer Triangle: top = (100, 6), bottom-left = (8, 168), bottom-right = (192, 168)
+   * Text row baseline y = 132
    */
   return (
     <svg
@@ -36,7 +36,7 @@ export default function AwloLogo({
       className={className}
       aria-label="AWLO Advert logo"
     >
-      {/* ── Outer blue triangle (hollow, thick stroke) ── */}
+      {/* ── Outer blue triangle ── */}
       <polygon
         points="100,8 190,166 10,166"
         fill="none"
@@ -46,19 +46,9 @@ export default function AwloLogo({
         strokeLinecap="round"
       />
 
-      {/* ══════════════════════════════════════════
-          LETTER ROW  –  baseline y = 132
-          Approximate x positions (viewBox units):
-            A  : 28
-            W  : 50  (wide – takes ~30 units)
-            /  : 82
-            L  : 93
-            O  : 111 (circle glyph)
-          ══════════════════════════════════════════ */}
-
       {/* ── A (gray) ── */}
       <text
-        x="28" y="132"
+        x="30" y="132"
         fontFamily="Arial Black, Arial, sans-serif"
         fontWeight="900"
         fontSize="38"
@@ -66,47 +56,30 @@ export default function AwloLogo({
         textAnchor="middle"
       >A</text>
 
-      {/* ── W  –  rendered as two mirrored chevrons ──
-          Left chevron: green   Right chevron: red
-          We draw them as filled polygons so we get
-          clean colour splits without font hacks.
-          W bounding box: x 47–83, top y 96, bottom y 134  */}
+      {/* ── W (Exact AWLO Logo Shapes) ── */}
+      <g>
+        {/* Green inverted triangle */}
+        <polygon
+          points="36,96 62,96 48,125"
+          fill={w ? "white" : "#10B981"}
+        />
 
-      {/* Green left half of W */}
-      <polygon
-        points="47,96  57,96  65,128  57,134  47,134"
-        fill={w ? "white" : "#16A34A"}
-      />
-      {/* shared inner-V tip (green side) */}
-      <polygon
-        points="57,96  65,128  65,96"
-        fill={w ? "white" : "#16A34A"}
-      />
+        {/* Yellow pointed chevron */}
+        <polygon
+          points="66,96 82,96 61,142 50,128"
+          fill={w ? "white" : "#FACC15"}
+        />
 
-      {/* Red right half of W */}
-      <polygon
-        points="83,96  73,96  65,128  73,134  83,134"
-        fill={w ? "white" : "#DC2626"}
-      />
-      {/* shared inner-V tip (red side) */}
-      <polygon
-        points="73,96  65,128  65,96"
-        fill={w ? "white" : "#DC2626"}
-      />
-
-      {/* ── / (yellow slash) ── */}
-      <text
-        x="91" y="132"
-        fontFamily="Arial Black, Arial, sans-serif"
-        fontWeight="900"
-        fontSize="38"
-        fill={w ? "white" : "#EAB308"}
-        textAnchor="middle"
-      >/</text>
+        {/* Red pointed chevron */}
+        <polygon
+          points="85,96 101,96 83,143 70,130"
+          fill={w ? "white" : "#EF4444"}
+        />
+      </g>
 
       {/* ── L (gray) ── */}
       <text
-        x="107" y="132"
+        x="115" y="132"
         fontFamily="Arial Black, Arial, sans-serif"
         fontWeight="900"
         fontSize="38"
@@ -114,25 +87,17 @@ export default function AwloLogo({
         textAnchor="middle"
       >L</text>
 
-      {/* ── O with play-button ──
-          Draw a gray "O" ring, then overlay a blue circle with
-          a white play triangle inside (matching the logo exactly) */}
-
-      {/* Gray O ring */}
-      <circle cx="143" cy="114" r="17"
+      {/* ── O with play button ── */}
+      <circle cx="148" cy="114" r="17"
         fill="none"
         stroke={w ? "white" : "#6B7280"}
         strokeWidth="5"
       />
-
-      {/* Blue filled circle (play button background) */}
-      <circle cx="143" cy="114" r="11"
+      <circle cx="148" cy="114" r="11"
         fill={w ? "rgba(255,255,255,0.3)" : "#1A56DB"}
       />
-
-      {/* White play triangle */}
       <polygon
-        points="140,109  140,119  150,114"
+        points="145,109 145,119 155,114"
         fill="white"
       />
 
@@ -149,4 +114,3 @@ export default function AwloLogo({
     </svg>
   );
 }
-

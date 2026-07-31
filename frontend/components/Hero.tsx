@@ -54,8 +54,40 @@ export default function Hero({ settings }: Props) {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-heading font-bold text-6xl sm:text-7xl lg:text-7xl xl:text-8xl text-white leading-[1.0] mb-6"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD400] to-[#FF8C00]">
-                AWLO
+              <span className="inline-flex items-center tracking-tight gap-0">
+                {/* A */}
+                <span className="text-slate-300">A</span>
+
+                {/* W — exact logo polygon coords */}
+                <svg
+                  viewBox="36 96 65 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-[0.72em] w-auto inline-block align-middle -ml-[0.18em] mr-[0.02em] mb-[0.02em]"
+                  aria-hidden="true"
+                >
+                  {/* Green triangle: corners at 39,96 / 63,96 / 51.5,125 — r=2.5 */}
+                  <path
+                    d="M 41.5,96 Q 63,96 61.1,97.9 L 53.8,122.7 Q 51.5,125 49.2,122.7 L 41.9,97.9 Q 39,96 41.5,96 Z"
+                    fill="#10B981"
+                  />
+                  {/* Yellow chevron: corners at 66,96 / 82,96 / 61,145 / 53,128 — r=2.5 */}
+                  <path
+                    d="M 68.5,96 Q 82,96 80.1,97.8 L 63.3,142.6 Q 61,145 58.8,143.5 L 53.6,130.3 Q 53,128 54.9,126.2 L 64.1,97.8 Q 66,96 68.5,96 Z"
+                    fill="#FACC15"
+                  />
+                  {/* Red chevron: corners at 85,96 / 101,96 / 80,145 / 70,130 — r=2.5 */}
+                  <path
+                    d="M 87.5,96 Q 101,96 99.1,97.8 L 82.3,142.6 Q 80,145 77.8,143.5 L 72.6,132.3 Q 70,130 71.9,128.2 L 83.1,97.8 Q 85,96 87.5,96 Z"
+                    fill="#EF4444"
+                  />
+                </svg>
+
+                {/* L */}
+                <span className="text-slate-300">L</span>
+
+                {/* O */}
+                <span className="text-slate-300">O</span>
               </span>
               <br />
               Business
