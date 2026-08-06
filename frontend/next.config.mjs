@@ -4,16 +4,18 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        // Supabase Storage (project-specific bucket URLs)
-        protocol: "https",
-        hostname: "qmjzkoekgyvdwumuvnsd.supabase.co",
-        pathname: "/storage/v1/object/public/**",
-      },
-      {
-        // Supabase CDN transform URLs
         protocol: "https",
         hostname: "*.supabase.co",
-        pathname: "/storage/v1/render/**",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "*.supabase.co",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
       },
     ],
   },

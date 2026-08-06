@@ -54,6 +54,7 @@ function GalleryCard({
             src={item.file_url}
             alt={item.title}
             fill
+            unoptimized
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
