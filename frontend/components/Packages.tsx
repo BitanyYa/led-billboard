@@ -285,7 +285,7 @@ export default function Packages({ settings, packages }: Props) {
           transition={{ delay: 0.7 }}
           className="text-center text-gray-600 text-sm mt-12 font-normal"
         >
-          All prices are included {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
+          All prices are VAT included. Every package includes a 20-second ad slot running 40 times per day.
           Contact us at <span className="text-[#FFD400] font-medium">{contactPhone}</span> for more details.
         </motion.p>
       </div>
