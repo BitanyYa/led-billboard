@@ -29,12 +29,12 @@ function GalleryCard({
       className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
     >
       {/* Media */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-900">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#070E1B]">
         {item.file_type === "video" ? (
           <>
             <video
               src={item.file_url}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
               muted
               playsInline
               loop
@@ -54,7 +54,7 @@ function GalleryCard({
           <img
             src={item.file_url}
             alt={item.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
         )}
