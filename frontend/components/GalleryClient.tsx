@@ -50,13 +50,12 @@ function GalleryCard({
             </div>
           </>
         ) : (
-          <NextImage
+          /* Standard <img> tag to load directly from Supabase Storage without Next.js proxy domain restrictions */
+          <img
             src={item.file_url}
             alt={item.title}
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
           />
         )}
 

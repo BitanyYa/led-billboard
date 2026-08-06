@@ -8,7 +8,7 @@ import type { GalleryItem } from "@/types/admin";
  */
 export async function fetchGalleryItems(): Promise<GalleryItem[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!url || !key) {
     console.warn("[gallery] Missing Supabase env vars — skipping fetch.");
@@ -16,7 +16,7 @@ export async function fetchGalleryItems(): Promise<GalleryItem[]> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const supabase = createClient<any>(url, key);
+  const supabase = createClient<any>(url, key, { auth: { persistSession: false } });
 
   const { data, error } = await supabase
     .from("gallery_items")
