@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <Navbar />
+      <Navbar settings={settings} />
       <Hero      settings={settings} />
       <About />
       <WhyUs />

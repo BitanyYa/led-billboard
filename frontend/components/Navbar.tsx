@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import type { SettingsMap } from "@/types/admin";
+import { getSetting } from "@/lib/settings";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -15,7 +17,8 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ settings }: { settings?: SettingsMap }) {
+  const logo = settings ? getSetting(settings, "logo_url", "/logo.png") || "/logo.png" : "/logo.png";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,7 +51,7 @@ export default function Navbar() {
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
             >
               <Image
-                src="/logo.png"
+                src={logo}
                 alt="AWLO Advert"
                 width={120}
                 height={56}

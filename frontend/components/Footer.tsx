@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Globe, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
@@ -18,6 +18,7 @@ interface Props {
 }
 
 export default function Footer({ settings }: Props) {
+  const logo     = getSetting(settings, "logo_url", "/logo.png") || "/logo.png";
   const phone    = getSetting(settings, "phone",    "+251 959 15 55 55");
   const email    = getSetting(settings, "email",    "awloadvertising@gmail.com");
   const address  = getSetting(settings, "address",  "Awlo Business Center, Bole, Addis Ababa");
@@ -44,7 +45,7 @@ export default function Footer({ settings }: Props) {
             <div className="mb-6">
               <motion.img
                 whileHover={{ scale: 1.03 }}
-                src="/logo.png"
+                src={logo}
                 alt="AWLO Business Center"
                 className="h-20 w-auto filter drop-shadow-[0_2px_10px_rgba(255,255,255,0.05)]"
               />
