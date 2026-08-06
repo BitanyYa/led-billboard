@@ -121,7 +121,7 @@ export default function Packages({ settings, packages }: Props) {
   const ref    = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const vatNote      = getSetting(settings, "pkg_vat_note",      "excl. 15% VAT");
+  const vatNote      = getSetting(settings, "pkg_vat_note",      "VAT included");
   const adDuration   = getSetting(settings, "pkg_ad_duration",   "20-second advertisement");
   const playsPerDay  = getSetting(settings, "pkg_plays_per_day", "40 plays per day");
   const contactPhone = getSetting(settings, "phone",             "+251 959 15 55 55");
@@ -285,7 +285,7 @@ export default function Packages({ settings, packages }: Props) {
           transition={{ delay: 0.7 }}
           className="text-center text-gray-600 text-sm mt-12 font-normal"
         >
-          All prices are before {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
+          All prices are {vatNote}. Every package includes a 20-second ad slot running 40 times per day.
           Contact us at <span className="text-[#FFD400] font-medium">{contactPhone}</span> for more details.
         </motion.p>
       </div>
