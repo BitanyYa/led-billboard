@@ -10,7 +10,9 @@ import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-// Server component — fetches settings + packages once per request.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const [settings, packages] = await Promise.all([
     fetchSettings(),
